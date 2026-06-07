@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDT FLASHLAND - Connexion</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0A1628 0%, #13294b 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .top-bar {
+            background: #0066CC;
+            padding: 10px 20px;
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-panel {
+            background: #0A1628;
+            border: 2px solid #0066CC;
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .login-illustration {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-illustration img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid #0051ff;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #001d6b;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .login-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px;
+            border: 2px solid #0051ff;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: #001d6b;
+            color: #000;
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid #ff0000;
+            color: #ff6b6b;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+
+            footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar" id="dateTimeBar">
+        Bonjour, nous sommes le <span id="currentDate"></span> | <span id="currentTime"></span>
+    </div>
+
+    <div class="login-container">
+        <div class="login-panel">
+                        <div class="login-illustration">
+                <img src="logofl.png" alt="Flashland Logo">
+            <h1 class="login-title">MDT FLASHLAND</h1>
+            </div>
+            
+            <div class="error-message" id="errorMessage"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Adresse mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="login-buttons">
+                    <button type="submit" class="btn">Se Connecter</button>
+                    <button type="button" class="btn" id="registerBtn">S'inscrire</button>
+                </div>
+            </form>
+        </div>
+              <footer>© 2025 FlashLand - Tous droits réservés - Made with ❤️ by Adept</footer>
+    </div>
+
+
+    <script>
+        async function checkIfLoggedIn() {
+            try {
+                const response = await fetch('/api/auth/check');
+                const data = await response.json();
+                
+                if (data.authenticated) {
+                    window.location.href = '/index.html';
+                }
+            } catch (error) {
+            }
+        }
+
+        checkIfLoggedIn();
+
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { day: '2-digit', month: 'long', year: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('fr-FR', dateOptions);
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('fr-FR', timeOptions);
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    if (data.token) {
+                        localStorage.setItem('authToken', data.token);
+                    }
+                    window.location.href = '/index.html';
+                } else {
+                    errorMessage.textContent = data.error || 'Erreur de connexion';
+                    errorMessage.classList.add('show');
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Erreur de connexion au serveur';
+                errorMessage.classList.add('show');
+            }
+        });
+
+        document.getElementById('registerBtn').addEventListener('click', () => {
+            window.location.href = '/register.html';
+        });
+    </script>
+</body>
+</html>

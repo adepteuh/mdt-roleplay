@@ -1,0 +1,2463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Blaine County Sheriff Office</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="department-bcso">
+    
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="logo.webp" alt="Logo" class="site-logo">
+            </div>
+            <h1 class="header-title">Blaine County Sheriff Office</h1>
+        </div>
+    </header>
+
+    
+    <div class="main-buttons">
+        <button class="main-btn" id="recensementBtn">Recensement Individus</button>
+        <button class="main-btn" id="rapportsPoliceBtn">Rapports Police</button>
+        <button class="main-btn" id="rechercheBtn">Recherche</button>
+        <button class="main-btn" id="communicationRadioBtn">Communication Radio</button>
+    </div>
+
+    
+    <div class="main-content">
+        
+        <aside class="sidebar">
+            <div class="user-info">
+                <div class="user-icon" id="userIconContainer">
+                    <svg id="userIconSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <img id="userIconPhoto" src="" alt="Photo de profil" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                <span class="user-name" id="userNameDisplay">Chargement...</span>
+            </div>
+
+            <div class="sidebar-buttons-horizontal">
+                <button class="sidebar-btn" id="parametresBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    Paramètres
+                </button>
+                <button class="sidebar-btn" id="logoutBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Se déconnecter
+                </button>
+            </div>
+
+            <div class="sidebar-buttons-vertical">
+                <button class="sidebar-btn-vertical" id="proceduresBtn">Procédures</button>
+                <button class="sidebar-btn-vertical" id="rechercheRapportsBtn">Recherche Rapports</button>
+                <button class="sidebar-btn-vertical" id="calculateurPeineBtn">Calculateur de peine</button>
+                <button class="sidebar-btn-vertical" id="gestionCompteBtn" style="display: none;">Gestion Compte</button>
+                <button class="sidebar-btn-vertical" id="gestionMDTBtn" style="display: none;">Gestion MDT</button>
+                <button class="sidebar-btn-vertical" id="gestionInfractionsBtn" style="display: none;">Gestion Infractions</button>
+            </div>
+        </aside>
+
+        
+        <div class="content-panels">
+            
+            <div class="panel">
+                <div class="panel-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <h2>AGENT DE LA SEMAINE</h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="agent-content">
+                    <div class="agent-image-container">
+                        <div class="agent-image" id="agentImageContainer">
+                            <div class="placeholder-image" id="agentPlaceholder">
+                                <span>Aucune image</span>
+                            </div>
+                            <img id="agentImage" style="display: none;" alt="Agent de la semaine">
+                        </div>
+                        <div class="image-upload-controls">
+                            <input type="file" id="agentImageInput" accept="image/*" style="display: none;">
+                            <button class="upload-btn" onclick="document.getElementById('agentImageInput').click()">
+                                Choisir une image
+                            </button>
+                            <button class="remove-btn" id="agentRemoveBtn" style="display: none;" onclick="removeAgentImage()">
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>END OF WATCH</h2>
+                </div>
+                <div class="eow-content">
+                    <div class="eow-image-container">
+                        <div class="eow-image" id="eowImageContainer">
+                            <div class="placeholder-image" id="eowPlaceholder">
+                                <span>Aucune image</span>
+                            </div>
+                            <img id="eowImage" style="display: none;" alt="End of Watch">
+                        </div>
+                        <div class="image-upload-controls">
+                            <input type="file" id="eowImageInput" accept="image/*" style="display: none;">
+                            <button class="upload-btn" onclick="document.getElementById('eowImageInput').click()">
+                                Choisir une image
+                            </button>
+                            <button class="remove-btn" id="eowRemoveBtn" style="display: none;" onclick="removeEowImage()">
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="panel code-panel">
+                <div class="panel-header">
+                    <h2>CODE ACTUEL EN VILLE</h2>
+                </div>
+                <div class="code-content">
+                    <div class="defcon-container">
+                        <div class="defcon-text" id="defconText" style="display: none;">DEFCON 3</div>
+                        <div class="defcon-image-container" id="defconImageContainer">
+                            <div class="placeholder-image" id="defconPlaceholder">
+                                <span>Aucune image</span>
+                            </div>
+                            <img id="defconImage" style="display: none;" alt="DEFCON Image">
+                        </div>
+                        <div class="image-upload-controls">
+                            <input type="file" id="defconImageInput" accept="image/*" style="display: none;">
+                            <button class="upload-btn" onclick="document.getElementById('defconImageInput').click()">
+                                Choisir une image
+                            </button>
+                            <button class="remove-btn" id="defconRemoveBtn" style="display: none;" onclick="removeDefconImage()">
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="panel">
+                <div class="panel-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <h2>MOST WANTED</h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="most-wanted-content">
+                    <div class="most-wanted-image-container">
+                        <div class="most-wanted-image" id="mostWantedImageContainer">
+                            <div class="placeholder-image" id="mostWantedPlaceholder">
+                                <span>Aucune image</span>
+                            </div>
+                            <img id="mostWantedImage" style="display: none;" alt="Most Wanted">
+                        </div>
+                        <div class="image-upload-controls">
+                            <input type="file" id="mostWantedImageInput" accept="image/*" style="display: none;">
+                            <button class="upload-btn" onclick="document.getElementById('mostWantedImageInput').click()">
+                                Choisir une image
+                            </button>
+                            <button class="remove-btn" id="mostWantedRemoveBtn" style="display: none;" onclick="removeMostWantedImage()">
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="rechercheAgentModal" style="display: none;">
+        <div class="modal-recherche-agent">
+            <button class="modal-close" onclick="closeRechercheAgentModal()">×</button>
+            <h2 class="recherche-agent-title">ARRESTATION</h2>
+            <div class="recherche-agent-form">
+                <select id="rechercheAgentNom" class="recherche-agent-select">
+                    <option value="">-- Sélectionner un agent --</option>
+                </select>
+                <div class="recherche-agent-dates">
+                    <div class="recherche-agent-date-group">
+                        <label class="recherche-agent-label">Date de début</label>
+                        <input type="date" id="rechercheAgentDateDebut" class="recherche-agent-date-input">
+                    </div>
+                    <div class="recherche-agent-date-group">
+                        <label class="recherche-agent-label">Date de fin</label>
+                        <input type="date" id="rechercheAgentDateFin" class="recherche-agent-date-input">
+                    </div>
+                </div>
+                <button id="rechercheAgentBtn" class="recherche-agent-search-btn">Rechercher</button>
+            </div>
+            <div id="rechercheAgentResults" class="recherche-agent-results"></div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="recensementModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-number">N°463</span>
+                <button class="modal-close" onclick="closeRecensementModal()">×</button>
+            </div>
+            
+            <h2 class="modal-title">NOUVEAU RECENSEMENT</h2>
+            
+            
+            <div class="form-top-sections">
+                
+                <div class="form-section">
+                    <div class="section-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <h3>IDENTITÉ</h3>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <label>Prénom & Nom</label>
+                            <input type="text" id="recensementPrenomNom" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Date de naissance</label>
+                            <input type="date" id="recensementDateNaissance">
+                        </div>
+                        <div class="form-field">
+                            <label>Sexe</label>
+                            <select id="recensementSexe">
+                                <option value="">Sélectionner</option>
+                                <option value="Masculin">Masculin</option>
+                                <option value="Féminin">Féminin</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Type</label>
+                            <input type="text" id="recensementType" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Taille (en cm)</label>
+                            <input type="number" id="recensementTaille" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="form-section">
+                    <div class="section-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                            <line x1="12" y1="11" x2="12" y2="17"></line>
+                            <line x1="9" y1="14" x2="15" y2="14"></line>
+                        </svg>
+                        <h3>Supplémentaire</h3>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <label>Couleur des cheveux</label>
+                            <input type="text" id="recensementCouleurCheveux" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Couleur des yeux</label>
+                            <input type="text" id="recensementCouleurYeux" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Numéro de téléphone</label>
+                            <input type="tel" id="recensementTelephone" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Profession</label>
+                            <input type="text" id="recensementProfession" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Adresse</label>
+                            <input type="text" id="recensementAdresse" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="form-section">
+                    <div class="section-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        <h3>Photo</h3>
+                    </div>
+                    <div class="image-upload-area" id="photoUploadArea" onclick="document.getElementById('photoInput').click()">
+                        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                        <span id="photoPlaceholder">Cliquez pour importer une image</span>
+                        <img id="photoPreview" style="display: none;" alt="Photo">
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="form-bottom-sections">
+                
+                <div class="form-section">
+                    <div class="section-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                        <h3>TYPE DE LICENCE</h3>
+                    </div>
+                    <div class="license-section">
+                        <div class="license-type">
+                            <h4>Permis de conduire</h4>
+                            <div class="license-buttons" id="recensementPermisConduire">
+                                <button class="license-btn" data-license="A">A</button>
+                                <button class="license-btn" data-license="B">B</button>
+                                <button class="license-btn" data-license="C">C</button>
+                            </div>
+                            <div class="license-legend">
+                                A = Permis Moto | B = Permis Voiture | C = Permis Camion
+                            </div>
+                        </div>
+                        <div class="license-type">
+                            <h4>Permis de port d'armes</h4>
+                            <button class="license-btn" id="recensementPPA" data-license="PPA">PPA Valide</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="form-section">
+                    <div class="section-header">
+                        <h3>STATUT DE LICENCE</h3>
+                    </div>
+                    <div class="license-status">
+                        <div class="status-item">
+                            <span class="status-letter">A</span>
+                            <span class="status-na">N/A</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-letter">B</span>
+                            <span class="status-na">N/A</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-letter">C</span>
+                            <span class="status-na">N/A</span>
+                        </div>
+                        <div class="status-invalid">Invalide</div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="modal-footer">
+                <button class="submit-btn" onclick="encoderRecensement()">Encoder le recensement</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="proceduresModal" style="display: none;">
+        <div class="modal-procedures">
+            <button class="modal-close" onclick="closeProceduresModal()">×</button>
+            <h2 class="procedures-title">Différentes Procédures</h2>
+            <div class="procedures-list">
+                <div class="procedure-item" id="droitMirandaBtn">
+                    <div class="procedure-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <span class="procedure-text">Droit Miranda</span>
+                </div>
+                <div class="procedure-item" id="palpationFouilleBtn">
+                    <div class="procedure-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                            <circle cx="11" cy="11" r="3"></circle>
+                        </svg>
+                    </div>
+                    <span class="procedure-text">Palpation & Fouille</span>
+                </div>
+                <div class="procedure-item" id="controleRoutierBtn">
+                    <div class="procedure-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <span class="procedure-text">Contrôle Routier</span>
+                </div>
+                <div class="procedure-item" id="coursePoursuiteBtn">
+                    <div class="procedure-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path>
+                            <polygon points="12 15 17 21 7 21 12 15"></polygon>
+                        </svg>
+                    </div>
+                    <span class="procedure-text">Course Poursuite</span>
+                </div>
+                <div class="procedure-item" id="triangulationBtn">
+                    <div class="procedure-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <span class="procedure-text">Triangulation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="listingPoliceModal" style="display: none;">
+        <div class="modal-listing-police">
+            <button class="modal-close" onclick="closeListingPoliceModal()">×</button>
+            <h2 class="listing-police-title">LISTING POLICE</h2>
+            <div class="listing-police-list">
+                <div class="listing-police-item" id="listingArrestationBtn">
+                    <div class="listing-police-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="7" y1="8" x2="17" y2="8"></line>
+                            <line x1="7" y1="12" x2="17" y2="12"></line>
+                            <line x1="7" y1="16" x2="17" y2="16"></line>
+                        </svg>
+                    </div>
+                    <span class="listing-police-text">Rapport Arrestation</span>
+                </div>
+                <div class="listing-police-item" id="listingContraventionBtn">
+                    <div class="listing-police-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="7" y1="8" x2="17" y2="8"></line>
+                            <line x1="7" y1="12" x2="17" y2="12"></line>
+                            <line x1="7" y1="16" x2="17" y2="16"></line>
+                        </svg>
+                    </div>
+                    <span class="listing-police-text">Rapport Contravention</span>
+                </div>
+                <div class="listing-police-item" id="listingPlainteBtn">
+                    <div class="listing-police-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="7" y1="8" x2="17" y2="8"></line>
+                            <line x1="7" y1="12" x2="17" y2="12"></line>
+                            <line x1="7" y1="16" x2="17" y2="16"></line>
+                        </svg>
+                    </div>
+                    <span class="listing-police-text">Rapport Plainte</span>
+                </div>
+                <div class="listing-police-item" id="listingIncidentBtn">
+                    <div class="listing-police-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="7" y1="8" x2="17" y2="8"></line>
+                            <line x1="7" y1="12" x2="17" y2="12"></line>
+                            <line x1="7" y1="16" x2="17" y2="16"></line>
+                        </svg>
+                    </div>
+                    <span class="listing-police-text">Rapport Incident</span>
+                </div>
+                <div class="listing-police-item" id="listingFirstLincolnBtn">
+                    <div class="listing-police-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="7" y1="8" x2="17" y2="8"></line>
+                            <line x1="7" y1="12" x2="17" y2="12"></line>
+                            <line x1="7" y1="16" x2="17" y2="16"></line>
+                        </svg>
+                    </div>
+                    <span class="listing-police-text">First Lincoln</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="mirandaModal" style="display: none;">
+        <div class="modal-miranda">
+            <button class="modal-close" onclick="closeMirandaModal()">×</button>
+            <h2 class="miranda-title">Droit Miranda</h2>
+            <div class="miranda-content">
+                <p class="miranda-paragraph">
+                    Madame/Monsieur <strong>"Prénom & Nom"</strong>, nous sommes le <strong>JJ/MM/YYYY</strong>, il est <strong>XX:XX</strong>
+                </p>
+                <p class="miranda-paragraph">
+                    Vous êtes en état d'arrestation pour les faits suivants : <strong>XXXXXXXXXXXXXXXX</strong>
+                </p>
+                <p class="miranda-paragraph">
+                    Vous avez le droit de garder le silence. Si vous renoncez à ce droit, tout ce que vous direz pourra et sera retenu contre vous devant une cour de justice.
+                </p>
+                <p class="miranda-paragraph">
+                    Vous avez le droit à un avocat et d'avoir un avocat présent lors de votre interrogatoire. Si vous n'en avez pas les moyens, un vous sera commis d'office.
+                </p>
+                <p class="miranda-paragraph">
+                    Vous avez le droit à manger, à boire ainsi qu'une assistance médicale.
+                </p>
+                <p class="miranda-paragraph">
+                    Sachez également, que les chefs d'inculpations peuvent être amenés à changer durant la procédure.
+                </p>
+                <p class="miranda-paragraph">
+                    Avez-vous bien compris les droits ?
+                </p>
+                <p class="miranda-paragraph">
+                    Voulez-vous exercer l'un de vos droits ?
+                </p>
+                <p class="miranda-paragraph miranda-note">
+                    Dans le cas où un individu déclare plus de 3 fois qu'il n'a pas compris ses droits, les droits fondamentaux d'un individu sont pris comme compris et approuvé.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="palpationFouilleModal" style="display: none;">
+        <div class="modal-miranda">
+            <button class="modal-close" onclick="closePalpationFouilleModal()">×</button>
+            <h2 class="miranda-title">Palpation & Fouille</h2>
+            <div class="miranda-content">
+                <div class="procedure-section">
+                    <h3 class="procedure-section-title">Procédure de palpation :</h3>
+                    <p class="miranda-paragraph">
+                        La palpation s'effectue après l'arrestation d'un individu. Elle sert à saisir tous les objets pouvant blesser le suspect et l'agent de police. Lors d'une palpation, vous ne sentez que les objets de grande taille, métallique, tranchant.
+                    </p>
+                    <p class="miranda-paragraph">
+                        <strong>→</strong> En code Orange, Rouge et Noir, la palpation peut s'effectuer en tout temps que l'individu soit arrêté ou non.
+                    </p>
+                </div>
+                
+                <div class="procedure-section">
+                    <h3 class="procedure-section-title">Procédure de fouille :</h3>
+                    <p class="miranda-paragraph">
+                        La fouille s'effectue uniquement après l'approbation des Droits Miranda par le suspect. Lors d'une fouille, vous pouvez voir tous les objets qu'un individu possède allant du pochon de drogue à un outil de crochetage, etc.
+                    </p>
+                    <p class="miranda-paragraph">
+                        <strong>→</strong> La fouille doit être pratiquée par un officier du même sexe que la personne. Dans le cas où le sexe est opposé, s'il n'y a pas d'agent du même sexe que le prévenu, vous pouvez faire une fouille à condition d'avoir un agent à côté pouvant prouver qu'aucun attouchement ni autre n'a eu lieu durant la fouille.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="controleRoutierModal" style="display: none;">
+        <div class="modal-miranda">
+            <button class="modal-close" onclick="closeControleRoutierModal()">×</button>
+            <h2 class="miranda-title">Procédure Contrôle Routier</h2>
+            <div class="miranda-content">
+                <div class="procedure-section">
+                    <p class="miranda-paragraph">
+                        <strong>Code : 10-38</strong>
+                    </p>
+                    <p class="miranda-paragraph">
+                        <strong>A :</strong> Conducteur<br>
+                        <strong>B :</strong> Passager
+                    </p>
+                </div>
+
+                <div class="procedure-section">
+                    <h3 class="procedure-section-title">Procédure :</h3>
+                    
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>1.</strong> <strong class="role-a">A</strong> signale son intention de contrôler le véhicule en activant les gyrophares et la sirène.
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>2.</strong> <strong class="role-b">B</strong> ordonne au véhicule de s'arrêter et de se ranger sur le côté à l'aide d'un mégaphone.
+                        </p>
+                        <p class="miranda-paragraph procedure-substep">
+                            • Le conducteur contrôlé doit couper le moteur de son véhicule.<br>
+                            • Le conducteur doit ensuite placer les clés de son véhicule bien visible sur le toit.<br>
+                            • Le conducteur doit sortir du véhicule avant les agents.<br>
+                            • Le conducteur doit présenter ses papiers (permis de conduire, carte d'identité, papiers du véhicule).
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>3.</strong> Si l'individu se conforme, <strong class="role-b">B</strong> signale le contrôle de véhicule (10-38) par radio.
+                        </p>
+                        <p class="miranda-paragraph procedure-substep">
+                            • Donner la localisation du contrôle, en précisant le nom de la patrouille.<br>
+                            • Préciser la description du véhicule (modèle, couleur, immatriculation).
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>4.</strong> <strong class="role-a">A</strong> arrête le véhicule de patrouille quelques mètres derrière le véhicule contrôlé.
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>5.</strong> <strong class="role-b">B</strong> sort du véhicule de patrouille et s'approche du véhicule arrêté.
+                        </p>
+                        <p class="miranda-paragraph procedure-substep">
+                            • Garder une main sur son arme de service par précaution.<br>
+                            • Inspecter l'intérieur du véhicule, toujours face à l'individu et ne jamais lui tourner le dos.<br>
+                            • Demander à l'individu contrôlé les papiers du véhicule.<br>
+                            • Si l'individu ne se conforme pas (refus de se conformer, résistance persistante), la force peut être utilisée, et le véhicule et l'individu seront fouillés ; l'agent <strong class="role-a">A</strong> viendra en renfort.
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>6.</strong> <strong class="role-a">A</strong> effectue une recherche sur l'individu contrôlé via la base de données mobile du véhicule de patrouille.
+                        </p>
+                        <p class="miranda-paragraph procedure-substep">
+                            • Vérifier que l'individu ne fait pas l'objet d'un mandat d'arrêt.
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>7.</strong> <strong class="role-b">B</strong> délivre enfin une contravention au propriétaire du véhicule arrêté, si le contrôle aboutit à une infraction.
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>8.</strong> Dégager la route afin que l'individu contrôlé puisse s'insérer en toute sécurité dans la circulation.
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>9.</strong> <strong class="role-a">A</strong> et <strong class="role-b">B</strong> remontent dans leur véhicule, <strong class="role-b">B</strong> signale la fin du contrôle et le retour en patrouille (Fin de 10-38, retour en 10-98 / Code-4 sur 10-38).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="coursePoursuiteModal" style="display: none;">
+        <div class="modal-miranda">
+            <button class="modal-close" onclick="closeCoursePoursuiteModal()">×</button>
+            <h2 class="miranda-title">Procédure Course Poursuite</h2>
+            <div class="miranda-content">
+                <div class="procedure-section">
+                    <p class="miranda-paragraph">
+                        <strong>Course poursuite (10-56 / 10-57) :</strong>
+                    </p>
+                    <p class="miranda-paragraph">
+                        <strong class="role-a">A :</strong> Conducteur<br>
+                        <strong class="role-b">B :</strong> Passager
+                    </p>
+                </div>
+
+                <div class="procedure-section">
+                    <h3 class="procedure-section-title">Cas A :</h3>
+                    <p class="miranda-paragraph">
+                        B a ordonné à un véhicule de s'arrêter, mais celui-ci n'obtempère pas. Une course poursuite s'engage.
+                    </p>
+                    
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>1)</strong> <strong class="role-a">A69</strong> signale la course poursuite (10-56/10-57) et demande des renforts supplémentaires (10-35).
+                        </p>
+                        <p class="miranda-paragraph procedure-substep">
+                            → Donner la localisation et la direction de la course-poursuite<br>
+                            → Préciser la description du véhicule en fuite (modèle, couleur, immatriculation), et le motif de la poursuite
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>2)</strong> Le passager étant dans le véhicule en tête de la course poursuite (de la patrouille A69) devra régulièrement apporter des mises à jour pour aiguiller les renforts.
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>3)</strong> <strong class="role-a">A69</strong> s'efforce de suivre le véhicule en fuite.
+                        </p>
+                        <p class="miranda-paragraph procedure-substep">
+                            → Attendre une erreur de sa part<br>
+                            → Véhicule appelé en renfort (10-35) en anticipation qui va tenter de bloquer les ruelles / bloquer le véhicule avec l'A69 (lead poursuite) s'il commet une erreur.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="procedure-section">
+                    <h3 class="procedure-section-title">Cas B :</h3>
+                    <p class="miranda-paragraph">
+                        Vous et votre équipier patrouillez lorsque le central vous signale une course-poursuite dans votre secteur. Vous répondez à l'appel en le signalant au central, puis vous rejoignez la Chasse en milieu ou fin de course poursuite.
+                    </p>
+                    
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>1)</strong> <strong class="role-b">B</strong> (véhicule appeler en renfort/10-35) signale les obstacles et autres entraves à la poursuite et reste à l'écoute des mises à jour apporté par le véhicule de la patrouille A69 dans l'objectif d'anticiper le trajet et bloquer un accès.
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>2)</strong> <strong class="role-b">B</strong> suit le lead course poursuite (A69), sans le dépasser dépasser pour autant, sauf en cas d'abandon par un des véhicules de tête (accident, erreur, etc).
+                        </p>
+                    </div>
+
+                    <div class="procedure-step">
+                        <p class="miranda-paragraph">
+                            <strong>3)</strong> <strong class="role-b">B</strong> peut, s'il en a l'occasion, donner un nouvel itinéraire à A pour tenter de couper la route au véhicule en fuite.
+                        </p>
+                        <p class="miranda-paragraph procedure-substep">
+                            → Signaler par radio tout changement d'itinéraire et tentative de barrage
+                        </p>
+                    </div>
+                </div>
+
+                <div class="procedure-section">
+                    <h3 class="procedure-section-title">Fin de la poursuite :</h3>
+                    <p class="miranda-paragraph">
+                        Une fois le véhicule immobilisé, <strong class="role-b">B</strong> sort de la patrouilleuse et se dirige vers le suspect (arme au poing)
+                    </p>
+                    <p class="miranda-paragraph procedure-substep">
+                        → Arrestation du suspect (cf. procédure suivante)<br>
+                        → Si le suspect refuse de sortir du véhicule, recours à la force : briser les vitres, taser (3 sommations !) et maîtriser le suspect<br>
+                        → Si l'individu est armé, possibilité d'abattre le suspect sans sommation. S'il pointe son arme sur vous-même ou l'un de vos collègues, l'abattre.
+                    </p>
+                </div>
+
+                <div class="procedure-section">
+                    <p class="miranda-paragraph miranda-warning">
+                        <strong>/!\\</strong> Ne mettez pas en péril la sécurité de nos concitoyens en engageant une course poursuite pour des faits relevant d'une simple infraction routière. Quand c'est possible, relevez la plaque du véhicule et décrochez, vous transmettrez ensuite l'identité du suspect à un membre de l'unité criminelle qui procédera à la demande de mandat. Si c'est impossible, poursuivez le suspect en gardant à l'esprit qu'il vaut mieux laisser fuir.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="triangulationModal" style="display: none;">
+        <div class="modal-miranda">
+            <button class="modal-close" onclick="closeTriangulationModal()">×</button>
+            <h2 class="miranda-title">Triangulation</h2>
+            <div class="miranda-content">
+                <div class="procedure-section">
+                    <p class="miranda-paragraph">
+                        La triangulation est une méthode de placement lors d'un contrôle pour prévenir toutes éventualité et sécuriser la zone :
+                    </p>
+                    <ul class="triangulation-list">
+                        <li class="miranda-paragraph">
+                            Qu'il y ait un ou plusieurs individus lors de l'intervention, les deux agents se placeront toujours de face (l'un à gauche et l'autre à droite), de manière à perturber la (ou les) personne, l'agent qui ne procède pas au contrôle se retourne de temps en temps afin de contrôler les alentours.
+                        </li>
+                        <li class="miranda-paragraph">
+                            Si le ton monte, les deux agents qui converseront avec l'individu, l'obligeront, de part leur placement, à tourner la tête. Les deux policiers ne seront donc pas jamais ensemble dans son champ visuel.
+                        </li>
+                        <li class="miranda-paragraph">
+                            Garder une distance de sécurité de quelques mètres.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="procedure-section">
+                    <h3 class="procedure-section-title">Schéma avec véhicule :</h3>
+                    <div class="schema-container">
+                        <div class="schema-placeholder" id="schemaAvecVehicule">
+                            <input type="file" id="schemaAvecVehiculeInput" accept="image/*" style="display: none;">
+                            <span class="schema-text">Cliquez pour importer le schéma avec véhicule</span>
+                            <img id="schemaAvecVehiculeImg" style="display: none;" alt="Schéma avec véhicule">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="procedure-section">
+                    <h3 class="procedure-section-title">Schéma sans véhicule :</h3>
+                    <div class="schema-container">
+                        <div class="schema-placeholder" id="schemaSansVehicule">
+                            <input type="file" id="schemaSansVehiculeInput" accept="image/*" style="display: none;">
+                            <span class="schema-text">Cliquez pour importer le schéma sans véhicule</span>
+                            <img id="schemaSansVehiculeImg" style="display: none;" alt="Schéma sans véhicule">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="communicationRadioModal" style="display: none;">
+        <div class="modal-procedures">
+            <button class="modal-close" onclick="closeCommunicationRadioModal()">×</button>
+            <h2 class="procedures-title">Communication Radio</h2>
+            <div class="radio-content">
+                <div class="radio-image-container">
+                    <div class="radio-image-placeholder" id="radioImagePlaceholder">
+                        <input type="file" id="radioImageInput" accept="image/*" style="display: none;">
+                        <span class="radio-placeholder-text">Aucune image</span>
+                        <img id="radioImage" style="display: none;" alt="Communication Radio">
+                    </div>
+                    <div class="image-upload-controls">
+                        <button class="upload-btn" onclick="document.getElementById('radioImageInput').click()">
+                            Choisir une image
+                        </button>
+                        <button class="remove-btn" id="radioRemoveBtn" style="display: none;" onclick="removeRadioImage()">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="rapportsPoliceModal" style="display: none;">
+        <div class="modal-rapports-police">
+            <button class="modal-close" onclick="closeRapportsPoliceModal()">×</button>
+            <h2 class="rapports-police-title">RAPPORTS POLICE</h2>
+            <div class="rapports-police-list">
+                <button class="rapports-police-item" type="button" id="rapportRookieBtn">
+                    <span class="rapports-police-icon" aria-hidden="true">★</span>
+                    <span class="rapports-police-text">Rapport Rookie</span>
+                </button>
+                <button class="rapports-police-item" type="button" id="rapportFirstLincolnBtn">
+                    <span class="rapports-police-icon" aria-hidden="true">★</span>
+                    <span class="rapports-police-text">First Lincoln</span>
+                </button>
+                <button class="rapports-police-item" type="button" id="rapportIncidentBtn">
+                    <span class="rapports-police-icon" aria-hidden="true">★</span>
+                    <span class="rapports-police-text">Rapport Incident</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="rapportRookieModal" style="display: none;">
+        <div class="modal-rapport-rookie">
+            <button class="modal-close" onclick="closeRapportRookieModal()">×</button>
+
+            <div class="rookie-sheet">
+                <div class="rookie-sheet-inner">
+                    <div class="rookie-top">
+                        <h2 class="rookie-title">RAPPORT ROOKIE</h2>
+                        <div class="rookie-report-number">
+                            <div class="rookie-report-number-label">NUMÉRO DU RAPPORT</div>
+                            <div class="rookie-report-number-value" id="rookieReportNumber">43</div>
+                        </div>
+                    </div>
+
+                    <div class="rookie-grid">
+                        <div class="rookie-box">
+                            <div class="rookie-box-row">
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">MATRICULE DU ROOKIE</div>
+                                    <input class="rookie-input" id="rookieMatricule" type="text" placeholder="Choisir le matricule">
+                                </div>
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">OFFICIER RÉDACTEUR</div>
+                                    <div class="rookie-static" id="rookieRedacteur">313 | Raùl Pérez</div>
+                                </div>
+                            </div>
+                            <div class="rookie-box-row">
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">PRÉNOM &amp; NOM DU ROOKIE</div>
+                                    <input class="rookie-input" id="rookieNom" type="text" placeholder="Prénom Nom">
+                                </div>
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">NUMÉRO DE TÉLÉPHONE</div>
+                                    <div class="rookie-static" id="rookiePhoneRedacteur">55598845</div>
+                                </div>
+                            </div>
+                            <div class="rookie-box-row">
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">OFFICIER(S) IMPLIQUÉ(S)</div>
+                                    <input class="rookie-input" id="rookieOfficiersImpliques" type="text" placeholder="Choisir le(s) matricule(s)">
+                                </div>
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">DATE DE RÉDACTION DU RAPPORT</div>
+                                    <div class="rookie-static">
+                                        <input type="date" class="rookie-input" id="rookieDateRedaction" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                                        <input type="time" class="rookie-input" id="rookieHeureRedaction" style="width: auto; display: inline-block;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rookie-box-row">
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">DATE DE DÉBUT DE PATROUILLE</div>
+                                    <div class="rookie-static">
+                                        <input type="date" class="rookie-input" id="rookieDateDebut" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                                        <input type="time" class="rookie-input" id="rookieHeureDebut" style="width: auto; display: inline-block;">
+                                    </div>
+                                </div>
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">DATE DE FIN DE PATROUILLE</div>
+                                    <div class="rookie-static">
+                                        <input type="date" class="rookie-input" id="rookieDateFin" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                                        <input type="time" class="rookie-input" id="rookieHeureFin" style="width: auto; display: inline-block;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rookie-photo-box" aria-label="Zone photo"></div>
+                    </div>
+
+                    <div class="rookie-eval">
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">RELATIONS CIVILES</div>
+                            <select class="rookie-eval-select" data-eval="relations">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">CONTRÔLE ROUTIER</div>
+                            <select class="rookie-eval-select" data-eval="controle">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">TERRAIN</div>
+                            <select class="rookie-eval-select" data-eval="terrain">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">PROCÉDURES</div>
+                            <select class="rookie-eval-select" data-eval="procedures">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">CONDUITE</div>
+                            <select class="rookie-eval-select" data-eval="conduite">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">CALL RADIO</div>
+                            <select class="rookie-eval-select" data-eval="radio">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">DISPATCH</div>
+                            <select class="rookie-eval-select" data-eval="dispatch">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">MDT</div>
+                            <select class="rookie-eval-select" data-eval="mdt">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="rookie-comment">
+                        <div class="rookie-label">COMMENTAIRE</div>
+                        <textarea class="rookie-textarea" id="rookieCommentaire" placeholder="Merci de rédiger votre rapport avec précision afin d'assurer une compréhension claire par la hiérarchie."></textarea>
+                    </div>
+
+                    <div class="rookie-signature">
+                        <div class="rookie-label">SIGNATURE DE L'OFFICIER</div>
+                        <div class="rookie-signature-value" id="rookieSignature">313 | Raùl Pérez</div>
+                    </div>
+
+                    <div class="rookie-actions">
+                        <button class="rookie-submit" type="button">SIGNER ET SOUMETTRE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="rapportFirstLincolnModal" style="display: none;">
+        <div class="modal-rapport-rookie">
+            <button class="modal-close" onclick="closeRapportFirstLincolnModal()">×</button>
+
+            <div class="rookie-sheet">
+                <div class="rookie-sheet-inner">
+                    <div class="rookie-top">
+                        <h2 class="rookie-title">LSPD x BCSO FIRST LINCOLN</h2>
+                        <div class="rookie-report-number">
+                            <div class="rookie-report-number-label">NUMÉRO DU RAPPORT</div>
+                            <div class="rookie-report-number-value" id="firstLincolnReportNumber">45</div>
+                        </div>
+                    </div>
+
+                    <div class="rookie-grid">
+                        <div class="rookie-box">
+                            <div class="rookie-box-row">
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">MATRICULE DU ROOKIE</div>
+                                    <input class="rookie-input" id="firstLincolnMatricule" type="text" placeholder="Choisir le matricule">
+                                </div>
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">OFFICIER RÉDACTEUR</div>
+                                    <div class="rookie-static" id="firstLincolnRedacteur">83 | Aria Watson</div>
+                                </div>
+                            </div>
+                            <div class="rookie-box-row">
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">PRÉNOM &amp; NOM DU ROOKIE</div>
+                                    <input class="rookie-input" id="firstLincolnNom" type="text" placeholder="Prénom Nom">
+                                </div>
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">NUMÉRO DE TÉLÉPHONE</div>
+                                    <div class="rookie-static" id="firstLincolnPhoneRedacteur">55598845</div>
+                                </div>
+                            </div>
+                            <div class="rookie-box-row">
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">OFFICIER(S) IMPLIQUÉ(S)</div>
+                                    <input class="rookie-input" id="firstLincolnOfficiersImpliques" type="text" placeholder="Choisir le(s) matricule(s)">
+                                </div>
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">DATE DE RÉDACTION DU RAPPORT</div>
+                                    <div class="rookie-static">
+                                        <input type="date" class="rookie-input" id="firstLincolnDateRedaction" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                                        <input type="time" class="rookie-input" id="firstLincolnHeureRedaction" style="width: auto; display: inline-block;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rookie-box-row">
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">DATE DE DÉBUT DE PATROUILLE</div>
+                                    <div class="rookie-static">
+                                        <input type="date" class="rookie-input" id="firstLincolnDateDebut" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                                        <input type="time" class="rookie-input" id="firstLincolnHeureDebut" style="width: auto; display: inline-block;">
+                                    </div>
+                                </div>
+                                <div class="rookie-box-cell">
+                                    <div class="rookie-label">DATE DE FIN DE PATROUILLE</div>
+                                    <div class="rookie-static">
+                                        <input type="date" class="rookie-input" id="firstLincolnDateFin" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                                        <input type="time" class="rookie-input" id="firstLincolnHeureFin" style="width: auto; display: inline-block;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rookie-photo-box" aria-label="Zone photo"></div>
+                    </div>
+
+                    <div class="rookie-eval">
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">RELATIONS CIVILES</div>
+                            <select class="rookie-eval-select" data-eval="relations">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">CONTRÔLE ROUTIER</div>
+                            <select class="rookie-eval-select" data-eval="controle">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">TERRAIN</div>
+                            <select class="rookie-eval-select" data-eval="terrain">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">PROCÉDURES</div>
+                            <select class="rookie-eval-select" data-eval="procedures">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">CONDUITE</div>
+                            <select class="rookie-eval-select" data-eval="conduite">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">CALL RADIO</div>
+                            <select class="rookie-eval-select" data-eval="radio">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">DISPATCH</div>
+                            <select class="rookie-eval-select" data-eval="dispatch">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                        <div class="rookie-eval-row">
+                            <div class="rookie-eval-label">MDT</div>
+                            <select class="rookie-eval-select" data-eval="mdt">
+                                <option value="" selected>Choisir le critère d'évaluation</option>
+                                <option>Acquis</option>
+                                <option>En cours</option>
+                                <option>Non acquis</option>
+                                <option>Non vu</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="rookie-comment">
+                        <div class="rookie-label">COMMENTAIRE</div>
+                        <textarea class="rookie-textarea" id="firstLincolnCommentaire" placeholder="Merci de rédiger votre rapport avec précision afin d'assurer une compréhension claire par la hiérarchie."></textarea>
+                    </div>
+
+                    <div class="rookie-signature">
+                        <div class="rookie-label">SIGNATURE DE L'OFFICIER</div>
+                        <div class="rookie-signature-value" id="firstLincolnSignature">83 | Aria Watson</div>
+                    </div>
+
+                    <div class="rookie-actions">
+                        <button class="rookie-submit" type="button">SIGNER ET SOUMETTRE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="rapportIncidentModal" style="display: none;">
+        <div class="modal-rapport-incident">
+            <button class="modal-close" onclick="closeRapportIncidentModal()">×</button>
+
+            <div class="incident-sheet">
+                <div class="incident-header">
+                    <div class="incident-badge" aria-hidden="true"></div>
+                    <div class="incident-header-text">
+                        <div class="incident-title-row">
+                            <h2 class="incident-title">Rapport d'Incident :</h2>
+                            <input class="incident-title-input" id="incidentTitre" type="text" value="" placeholder="">
+                        </div>
+                        <div class="incident-subtitle">Document émis par le Command Staff de la police de Los Santos</div>
+                        <div class="incident-confidential">
+                            Rapport N°<span id="incidentNumero">94</span>. Ce document est confidentiel. Toute diffusion non autorisée est passible de sanctions pénales.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="incident-location" id="incidentLocation">Rédigée à Sandy Shore, San Andreas</div>
+
+                <div class="incident-redacteur">
+                    <div class="incident-section-title">Rédacteur</div>
+                    <div class="incident-redacteur-lines">
+                        <div class="incident-redacteur-line">
+                            <span class="incident-ico" aria-hidden="true">👤</span>
+                            <span id="incidentRedacteurNom">Raùl Pérez</span>, Matricule <strong id="incidentRedacteurMatricule">313</strong>
+                        </div>
+                        <div class="incident-redacteur-line">
+                            <span class="incident-ico" aria-hidden="true">📞</span>
+                            <span id="incidentRedacteurTel">55598845</span>
+                        </div>
+                        <div class="incident-redacteur-line">
+                            <span class="incident-ico" aria-hidden="true">@</span>
+                            <span id="incidentRedacteurMail">raul.perez@bcso.us</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="incident-section-title">Informations Incident</div>
+                <div class="incident-table">
+                    <div class="incident-row incident-head">
+                        <div>Type de l'incident</div>
+                        <div>Date de l'incident</div>
+                        <div>Date de rédaction du rapport</div>
+                        <div>Lead Terrain</div>
+                        <div>Lead Négociation</div>
+                    </div>
+                    <div class="incident-row">
+                        <div>
+                            <select class="incident-select" id="incidentType">
+                                <option value="" selected>Choisir l'incident</option>
+                                <option>Braquage Armurerie</option>
+                                <option>Braquage Fleeca</option>
+                                <option>Braquage Bijouterie</option>
+                                <option>Braquage Human Labs</option>
+                                <option>Braquage Platf. Pétrolière</option>
+                                <option>Braquage Pacific Banque</option>
+                                <option>Attaque Convoi</option>
+                                <option>Prise D'otage(s)</option>
+                                <option>Attaque Labo</option>
+                                <option>Autre Attaque</option>
+                            </select>
+                        </div>
+                        <div class="incident-datetime">
+                            <input class="incident-input" id="incidentDateIncident" type="date">
+                            <input class="incident-input" id="incidentHeureIncident" type="time">
+                        </div>
+                        <div class="incident-datetime">
+                            <input class="incident-input" id="incidentDateRedaction" type="date">
+                            <input class="incident-input" id="incidentHeureRedaction" type="time">
+                        </div>
+                        <div><input class="incident-input" id="incidentLeadTerrain" type="text" placeholder="Choisir le matricule"></div>
+                        <div><input class="incident-input" id="incidentLeadNegotiation" type="text" placeholder="Choisir le matricule"></div>
+                    </div>
+                </div>
+
+                <div class="incident-section-title">Informations Complémentaires</div>
+                <div class="incident-table">
+                    <div class="incident-row incident-head">
+                        <div>Revendication(s)</div>
+                        <div>Nombre de ravisseur(s)</div>
+                        <div>Ravisseur(s) interpellé(s)</div>
+                        <div>Nombre d'Otage(s)</div>
+                        <div>Officier(s) Impliqué(s)</div>
+                    </div>
+                    <div class="incident-row">
+                        <div>
+                            <input class="incident-input" id="incidentRevendication" type="text" placeholder="Revendication(s)">
+                        </div>
+                        <div>
+                            <select class="incident-select" id="incidentNbRavisseurs">
+                                <option value="" selected>Choisir le nombre</option>
+                                <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                                <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                                <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                                <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="incident-select" id="incidentNbInterpel">
+                                <option value="" selected>Choisir le nombre</option>
+                                <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                                <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                                <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                                <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="incident-select" id="incidentNbOtages">
+                                <option value="" selected>Choisir le nombre</option>
+                                <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                                <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                                <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+                                <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+                            </select>
+                        </div>
+                        <div><input class="incident-input" id="incidentOfficiersImpliques" type="text" placeholder="Choisir le matricule"></div>
+                    </div>
+                </div>
+
+                <div class="incident-corps-title">
+                    <span>Corp du rapport</span>
+                </div>
+                <textarea class="incident-body" id="incidentCorps" placeholder=""></textarea>
+
+                <div class="incident-actions">
+                    <button class="incident-save" type="button" id="incidentSaveBtn">Enregistrer Incident</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="rapportArrestationModal" style="display: none;">
+        <div class="modal-rapport-arrestation">
+            <button class="modal-close" onclick="closeRapportArrestationModal()">×</button>
+
+            <div class="arrest-sheet">
+                <div class="arrest-header">
+                    <div class="arrest-badge" aria-hidden="true"></div>
+                    <div class="arrest-header-text">
+                        <h2 class="arrest-title">
+                            Rapport d'Arrestation :
+                            <input class="arrest-title-input" id="arrestTitre" type="text" placeholder="Nom Prénom">
+                        </h2>
+                        <div class="arrest-subtitle">Document émis par le Command Staff de la police de Los Santos</div>
+                        <div class="arrest-confidential">
+                            Dossier N°<span id="arrestNumero">345</span>. Ce document est confidentiel. Toute diffusion non autorisée est passible de sanctions pénales.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrest-location" id="arrestLocation">Rédigée à Sandy Shore, San Andreas</div>
+
+                <div class="arrest-redacteur">
+                    <div class="arrest-section-title">Rédacteur</div>
+                    <div class="arrest-redacteur-lines">
+                        <div class="arrest-redacteur-line">
+                            <span class="arrest-ico" aria-hidden="true">👤</span>
+                            <span id="arrestRedacteurNom">Raùl Pérez</span>, Matricule <strong id="arrestRedacteurMatricule">313</strong>
+                        </div>
+                        <div class="arrest-redacteur-line">
+                            <span class="arrest-ico" aria-hidden="true">📞</span>
+                            <span id="arrestRedacteurTel">55598845</span>
+                        </div>
+                        <div class="arrest-redacteur-line">
+                            <span class="arrest-ico" aria-hidden="true">@</span>
+                            <span id="arrestRedacteurMail">raul.perez@bcso.us</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrest-suspect-row">
+                    <div class="arrest-suspect">
+                        <div class="arrest-section-title">Suspect</div>
+                        <div class="arrest-suspect-table">
+                            <div class="arrest-suspect-head">
+                                <div>Nom</div>
+                                <div>Travail</div>
+                                <div>Date de naissance</div>
+                                <div>Téléphone</div>
+                                <div>Adresse</div>
+                            </div>
+                            <div class="arrest-suspect-body">
+                                <div id="arrestSuspectNom">-</div>
+                                <div id="arrestSuspectJob">-</div>
+                                <div id="arrestSuspectDob">-</div>
+                                <div id="arrestSuspectPhone">-</div>
+                                <div id="arrestSuspectAddress">-</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="arrest-photo">
+                        <img id="arrestSuspectPhoto" alt="Photo suspect" style="display:none;">
+                    </div>
+                </div>
+
+                <div class="arrest-main">
+                    <div class="arrest-charges">
+                        <div class="arrest-section-title">Chef(s) d'inculpation</div>
+                        <div style="margin-bottom: 10px; position: relative;">
+                            <input type="text" id="arrestChargeSearch" class="arrest-input" placeholder="Rechercher un chef d'inculpation..." autocomplete="off" style="width: 100%;">
+                            <div id="arrestChargeSearchResults" style="position: absolute; top: 100%; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); border: 2px solid rgba(0, 0, 0, 0.85); border-top: none; max-height: 300px; overflow-y: auto; z-index: 1000; display: none;"></div>
+                        </div>
+                        <div id="arrestChargesContainer" style="min-height: 180px; border: 2px solid rgba(0, 0, 0, 0.85); background: rgba(255, 255, 255, 0.08); padding: 1rem 1.25rem; word-wrap: break-word; overflow-wrap: break-word;">
+                            <div style="text-align: center; color: rgba(0, 0, 0, 0.6); padding: 2rem;">
+                                Aucune charge. Recherchez un chef d'inculpation ci-dessus pour l'ajouter.
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <div id="arrestChargesCount" style="margin-bottom: 10px; font-size: 0.85rem; color: rgba(0, 0, 0, 0.7);">0 charge(s)</div>
+                            <select class="arrest-select" id="arrestStatutUP" style="width: 100%; margin-bottom: 10px;">
+                                <option value="">Statut de l'UP</option>
+                                <option value="Purgée">Purgée</option>
+                                <option value="Non Purgée">Non Purgée</option>
+                            </select>
+                            <select class="arrest-select" id="arrestStatutAmende" style="width: 100%;">
+                                <option value="">Statut de l'amende</option>
+                                <option value="Payée">Payée</option>
+                                <option value="Non Payée">Non Payée</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="arrest-side">
+                        <div class="arrest-side-box">
+                            <div class="arrest-side-title">AVOCAT</div>
+                            <select class="arrest-select" id="arrestAvocat">
+                                <option value="NON" selected>NON</option>
+                                <option value="OUI">OUI</option>
+                            </select>
+                        </div>
+                        <div class="arrest-side-box">
+                            <div class="arrest-side-title">TOTAL</div>
+                            <select class="arrest-select" id="arrestTotalType" style="width: 100%; margin-bottom: 0.75rem;">
+                                <option value="MIN 1">MIN 1</option>
+                                <option value="MIN 2">MIN 2</option>
+                                <option value="MIN 3">MIN 3</option>
+                                <option value="NOMINAL" selected>NOMINAL</option>
+                                <option value="MAX 1">MAX 1</option>
+                                <option value="MAX 2">MAX 2</option>
+                                <option value="MAX 3">MAX 3</option>
+                            </select>
+                            <div class="arrest-total-row">
+                                <input class="arrest-input" id="arrestAmende" type="text" readonly placeholder="0" style="cursor: not-allowed;">
+                                <span style="color: rgba(0, 0, 0, 0.95);">$</span>
+                            </div>
+                            <div class="arrest-total-row">
+                                <input class="arrest-input" id="arrestTemps" type="text" readonly placeholder="0" style="cursor: not-allowed;">
+                                <span style="color: rgba(0, 0, 0, 0.95);">minute</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrest-body">
+                    <div class="arrest-section-title">Saisie</div>
+                    <textarea class="arrest-textarea" id="arrestSaisie" placeholder="Liste des objets saisis..."></textarea>
+                </div>
+
+                <div class="arrest-body">
+                    <div class="arrest-section-title">Corp du rapport</div>
+                    <textarea class="arrest-textarea arrest-body-text" id="arrestCorps" placeholder="Rédige ton rapport..."></textarea>
+                </div>
+
+                <div class="arrest-actions">
+                    <button class="arrest-save" type="button" id="arrestSaveBtn">Enregistrer Arrestation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="contraventionModal" style="display: none;">
+        <div class="modal-contravention">
+            <button class="modal-close" onclick="closeContraventionModal()">×</button>
+
+            <div class="contrav-sheet">
+                <div class="contrav-header">
+                    <div class="contrav-badge" aria-hidden="true"></div>
+                    <div class="contrav-header-text">
+                        <h2 class="contrav-title">
+                            Contravention :
+                            <input class="contrav-title-input" id="contravTitre" type="text" placeholder="Nom Prénom">
+                        </h2>
+                        <div class="contrav-subtitle">Document émis par le Command Staff de la police de Los Santos</div>
+                        <div class="contrav-confidential">
+                            Dossier N°<span id="contravNumero">7</span>. Ce document est confidentiel. Toute diffusion non autorisée est passible de sanctions pénales.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contrav-location" id="contravLocation">Rédigée à Sandy Shore, San Andreas</div>
+
+                <div class="contrav-redacteur">
+                    <div class="contrav-section-title">Rédacteur</div>
+                    <div class="contrav-redacteur-lines">
+                        <div class="contrav-redacteur-line">
+                            <span class="contrav-ico" aria-hidden="true">👤</span>
+                            <span id="contravRedacteurNom">Raùl Pérez</span>, Matricule <strong id="contravRedacteurMatricule">313</strong>
+                        </div>
+                        <div class="contrav-redacteur-line">
+                            <span class="contrav-ico" aria-hidden="true">📞</span>
+                            <span id="contravRedacteurTel">55598845</span>
+                        </div>
+                        <div class="contrav-redacteur-line">
+                            <span class="contrav-ico" aria-hidden="true">@</span>
+                            <span id="contravRedacteurMail">raul.perez@bcso.us</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contrav-suspect-row">
+                    <div class="contrav-suspect">
+                        <div class="contrav-section-title">Suspect</div>
+                        <div class="contrav-suspect-table">
+                            <div class="contrav-suspect-head">
+                                <div>Nom</div>
+                                <div>Travail</div>
+                                <div>Date de naissance</div>
+                                <div>Téléphone</div>
+                                <div>Adresse</div>
+                            </div>
+                            <div class="contrav-suspect-body">
+                                <div id="contravSuspectNom">-</div>
+                                <div id="contravSuspectJob">-</div>
+                                <div id="contravSuspectDob">-</div>
+                                <div id="contravSuspectPhone">-</div>
+                                <div id="contravSuspectAddress">-</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contrav-photo">
+                        <img id="contravSuspectPhoto" alt="Photo suspect" style="display:none;">
+                    </div>
+                </div>
+
+                <div class="contrav-main">
+                    <div class="contrav-charges">
+                        <div class="contrav-section-title">Chef(s) d'inculpation</div>
+
+                        <div class="contrav-charge-row">
+                            <input class="contrav-input" id="contravChef1" type="text" placeholder="Chef d'accusation">
+                            <input class="contrav-input contrav-small" id="contravAmende1" type="number" min="0" placeholder="0">
+                            <input class="contrav-input contrav-small" id="contravTemps1" type="number" min="0" placeholder="0">
+                        </div>
+                        <div class="contrav-charge-row">
+                            <input class="contrav-input" id="contravChef2" type="text" placeholder="Chef d'accusation">
+                            <input class="contrav-input contrav-small" id="contravAmende2" type="number" min="0" placeholder="0">
+                            <input class="contrav-input contrav-small" id="contravTemps2" type="number" min="0" placeholder="0">
+                        </div>
+                        <div class="contrav-charge-row">
+                            <input class="contrav-input" id="contravChef3" type="text" placeholder="Chef d'accusation">
+                            <input class="contrav-input contrav-small" id="contravAmende3" type="number" min="0" placeholder="0">
+                            <input class="contrav-input contrav-small" id="contravTemps3" type="number" min="0" placeholder="0">
+                        </div>
+                        <div class="contrav-charge-row">
+                            <input class="contrav-input" id="contravChef4" type="text" placeholder="Chef d'accusation">
+                            <input class="contrav-input contrav-small" id="contravAmende4" type="number" min="0" placeholder="0">
+                            <input class="contrav-input contrav-small" id="contravTemps4" type="number" min="0" placeholder="0">
+                        </div>
+                        <div class="contrav-charge-row">
+                            <input class="contrav-input" id="contravChef5" type="text" placeholder="Chef d'accusation">
+                            <input class="contrav-input contrav-small" id="contravAmende5" type="number" min="0" placeholder="0">
+                            <input class="contrav-input contrav-small" id="contravTemps5" type="number" min="0" placeholder="0">
+                        </div>
+                        <div class="contrav-charge-row">
+                            <input class="contrav-input" id="contravChef6" type="text" placeholder="Chef d'accusation">
+                            <input class="contrav-input contrav-small" id="contravAmende6" type="number" min="0" placeholder="0">
+                            <input class="contrav-input contrav-small" id="contravTemps6" type="number" min="0" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="contrav-side">
+                        <div class="contrav-side-box">
+                            <div class="contrav-side-title">TOTAL</div>
+                            <div class="contrav-total-row">
+                                <select class="contrav-select" id="contravAmendeType">
+                                    <option value="MIN 1">MIN 1</option>
+                                    <option value="MIN 2">MIN 2</option>
+                                    <option value="MIN 3">MIN 3</option>
+                                    <option value="NOMINAL" selected>NOMINAL</option>
+                                    <option value="MAX 1">MAX 1</option>
+                                    <option value="MAX 2">MAX 2</option>
+                                    <option value="MAX 3">MAX 3</option>
+                                </select>
+                                <input class="contrav-input contrav-small" id="contravTotalAmende" type="number" min="0" placeholder="0">
+                                <span>$</span>
+                            </div>
+                            <div class="contrav-total-row">
+                                <select class="contrav-select" id="contravTempsType">
+                                    <option value="MIN 1">MIN 1</option>
+                                    <option value="MIN 2">MIN 2</option>
+                                    <option value="MIN 3">MIN 3</option>
+                                    <option value="NOMINAL" selected>NOMINAL</option>
+                                    <option value="MAX 1">MAX 1</option>
+                                    <option value="MAX 2">MAX 2</option>
+                                    <option value="MAX 3">MAX 3</option>
+                                </select>
+                                <input class="contrav-input contrav-small" id="contravTotalTemps" type="number" min="0" placeholder="0">
+                                <span>minute</span>
+                            </div>
+                        </div>
+
+                        <div class="contrav-side-box">
+                            <select class="contrav-select" id="contravStatutUP">
+                                <option value="" selected>Statut de l'UP</option>
+                                <option>Confisqué</option>
+                                <option>Restitué</option>
+                                <option>N/A</option>
+                            </select>
+                            <select class="contrav-select" id="contravStatutAmende">
+                                <option value="" selected>Statut de l'amende</option>
+                                <option>Payée</option>
+                                <option>Impayée</option>
+                                <option>N/A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contrav-body">
+                    <div class="contrav-section-title">Corp du rapport</div>
+                    <div class="contrav-body-row">
+                        <span>Le</span>
+                        <input class="contrav-input" id="contravDate" type="date">
+                        <input class="contrav-input contrav-small" id="contravHeure" type="time">
+                        <span>à Los Santos,</span>
+                    </div>
+                    <div class="contrav-body-row">
+                        <span>La patrouille composée de</span>
+                        <input class="contrav-input" id="contravPatrouille" type="text" placeholder="Choisir le(s) matricule(s)">
+                        <span>a été appelé dans le quartier de</span>
+                        <input class="contrav-input" id="contravQuartier" type="text" placeholder="Indiquer le quartier">
+                        <span>.</span>
+                    </div>
+                    <div class="contrav-body-row">
+                        <span>L'individu s'est montré</span>
+                        <select class="contrav-select" id="contravCooperatif">
+                            <option value="" selected>Coopératif ?</option>
+                            <option>Oui</option>
+                            <option>Non</option>
+                            <option>N/A</option>
+                        </select>
+                        <span>pendant toute la durée de la procédure.</span>
+                    </div>
+                    <textarea class="contrav-textarea" id="contravCorpsLibre" placeholder=""></textarea>
+                </div>
+
+                <div class="contrav-actions">
+                    <button class="contrav-save" type="button" id="contravSaveBtn">Enregistrer Contravention</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="governmentWeaponModal" style="display: none;">
+        <div class="modal-contravention">
+            <button class="modal-close" onclick="closeGovernmentWeaponModal()">×</button>
+
+            <div class="contrav-sheet">
+                <div class="contrav-header">
+                    <div class="contrav-badge" aria-hidden="true" style="background: transparent; display: flex; align-items: center; justify-content: center; padding: 5px;">
+                        <img src="gouv.webp" alt="Logo Gouvernement" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="contrav-header-text">
+                        <h2 class="contrav-title">Arme émise par le gouvernement</h2>
+                        <div class="contrav-subtitle">Document émis par le Gouvernement de San Andreas</div>
+                    </div>
+                </div>
+
+                <div class="contrav-body" style="padding: 20px;">
+                    <div style="margin-bottom: 20px;">
+                        <label class="contrav-section-title" style="display: block; margin-bottom: 8px;">Prénom & Nom</label>
+                        <input class="contrav-input" id="weaponPrenomNom" type="text" placeholder="Prénom & Nom" style="width: 100%;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label class="contrav-section-title" style="display: block; margin-bottom: 8px;">Date de naissance</label>
+                        <input class="contrav-input" id="weaponDateNaissance" type="date" style="width: 100%;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label class="contrav-section-title" style="display: block; margin-bottom: 8px;">ID de l'arme</label>
+                        <input class="contrav-input" id="weaponArmeId" type="text" placeholder="ID de l'arme" style="width: 100%;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label class="contrav-section-title" style="display: block; margin-bottom: 8px;">Date de la délivrance</label>
+                        <input class="contrav-input" id="weaponDateDelivrance" type="date" style="width: 100%;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label class="contrav-section-title" style="display: block; margin-bottom: 8px;">Raison</label>
+                        <textarea class="contrav-textarea" id="weaponRaison" placeholder="Raison de la délivrance" style="width: 100%; min-height: 80px;"></textarea>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label class="contrav-section-title" style="display: block; margin-bottom: 8px;">Statut de l'arme</label>
+                        <select class="contrav-select" id="weaponStatut" style="width: 100%;" onchange="toggleWeaponRaisonInactif()">
+                            <option value="Actif">Actif</option>
+                            <option value="Non actif">Non actif</option>
+                        </select>
+                    </div>
+
+                    <div id="weaponRaisonInactifContainer" style="margin-bottom: 20px; display: none;">
+                        <label class="contrav-section-title" style="display: block; margin-bottom: 8px;">Raison du statut</label>
+                        <textarea class="contrav-textarea" id="weaponRaisonInactif" placeholder="Raison du statut" style="width: 100%; min-height: 80px;"></textarea>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label class="contrav-section-title" style="display: block; margin-bottom: 8px;">Commentaire</label>
+                        <textarea class="contrav-textarea" id="weaponCommentaire" placeholder="Commentaire" style="width: 100%; min-height: 100px;"></textarea>
+                    </div>
+                </div>
+
+                <div class="contrav-actions">
+                    <button class="contrav-save" type="button" id="weaponSaveBtn">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="plainteModal" style="display: none;">
+        <div class="modal-plainte">
+            <button class="modal-close" onclick="closePlainteModal()">×</button>
+
+            <div class="plainte-sheet">
+                <div class="plainte-header">
+                    <div class="plainte-badge" aria-hidden="true"></div>
+                    <div class="plainte-header-text">
+                        <h2 class="plainte-title">
+                            Plainte :
+                            <input class="plainte-title-input" id="plainteTitre" type="text" placeholder="">
+                        </h2>
+                        <div class="plainte-subtitle">Document émis par le Command Staff de la police de Los Santos</div>
+                        <div class="plainte-confidential">
+                            Plainte N°<span id="plainteNumero">8</span>. Ce document est confidentiel. Toute diffusion non autorisée est passible de sanctions pénales.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plainte-location" id="plainteLocation">Rédigée à Sandy Shore, San Andreas</div>
+
+                <div class="plainte-redacteur">
+                    <div class="plainte-section-title">Rédacteur</div>
+                    <div class="plainte-redacteur-lines">
+                        <div class="plainte-redacteur-line">
+                            <span class="plainte-ico" aria-hidden="true">👤</span>
+                            <span id="plainteRedacteurNom">Raùl Pérez</span>, Matricule <strong id="plainteRedacteurMatricule">313</strong>
+                        </div>
+                        <div class="plainte-redacteur-line">
+                            <span class="plainte-ico" aria-hidden="true">📞</span>
+                            <span id="plainteRedacteurTel">55598845</span>
+                        </div>
+                        <div class="plainte-redacteur-line">
+                            <span class="plainte-ico" aria-hidden="true">@</span>
+                            <span id="plainteRedacteurMail">raul.perez@bcso.us</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plainte-depositaire-row">
+                    <div class="plainte-depositaire">
+                        <div class="plainte-section-title">Dépositaire</div>
+                        <div class="plainte-depositaire-table">
+                            <div class="plainte-depositaire-head">
+                                <div>Nom</div>
+                                <div>Travail</div>
+                                <div>Date de naissance</div>
+                                <div>Téléphone</div>
+                                <div>Adresse</div>
+                            </div>
+                            <div class="plainte-depositaire-body">
+                                <div id="plainteDepNom">-</div>
+                                <div id="plainteDepJob">-</div>
+                                <div id="plainteDepDob">-</div>
+                                <div id="plainteDepPhone">-</div>
+                                <div id="plainteDepAddress">-</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plainte-photo">
+                        <img id="plainteDepPhoto" alt="Photo dépositaire" style="display:none;">
+                    </div>
+                </div>
+
+                <div class="plainte-section-title">Informations Plainte</div>
+                <div class="plainte-table">
+                    <div class="plainte-row plainte-head">
+                        <div>Motif de la plainte</div>
+                        <div>Date de l'incident</div>
+                        <div>Date de rédaction de la plainte</div>
+                    </div>
+                    <div class="plainte-row">
+                        <div>
+                            <select class="plainte-select" id="plainteMotif">
+                                <option value="" selected>Choisir le motif</option>
+                                <option>Agression</option>
+                                <option>Vol</option>
+                                <option>Menaces</option>
+                                <option>Harcèlement</option>
+                                <option>Dégradation</option>
+                                <option>Fraude</option>
+                                <option>Autre</option>
+                            </select>
+                        </div>
+                        <div class="plainte-datetime">
+                            <input class="plainte-input" id="plainteDateIncident" type="date">
+                            <input class="plainte-input" id="plainteHeureIncident" type="time">
+                        </div>
+                        <div class="plainte-datetime">
+                            <input class="plainte-input" id="plainteDateRedaction" type="date">
+                            <input class="plainte-input" id="plainteHeureRedaction" type="time">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plainte-corps">
+                    <div class="plainte-section-title">Corp du rapport</div>
+                    <textarea class="plainte-textarea" id="plainteCorps" placeholder="Merci de rédiger votre rapport avec précision afin d'assurer une compréhension claire par la hiérarchie."></textarea>
+                </div>
+
+                <div class="plainte-preuves">
+                    <div class="plainte-section-title">Photo(s) preuve</div>
+                    <div class="plainte-preuves-grid">
+                        <div class="plainte-preuve">
+                            <input type="file" id="plainteProof1" accept="image/*" style="display:none;">
+                            <button type="button" class="plainte-proof-btn" data-proof="1">Télécharger une image</button>
+                            <img id="plainteProofImg1" alt="Preuve 1" style="display:none;">
+                        </div>
+                        <div class="plainte-preuve">
+                            <input type="file" id="plainteProof2" accept="image/*" style="display:none;">
+                            <button type="button" class="plainte-proof-btn" data-proof="2">Télécharger une image</button>
+                            <img id="plainteProofImg2" alt="Preuve 2" style="display:none;">
+                        </div>
+                        <div class="plainte-preuve">
+                            <input type="file" id="plainteProof3" accept="image/*" style="display:none;">
+                            <button type="button" class="plainte-proof-btn" data-proof="3">Télécharger une image</button>
+                            <img id="plainteProofImg3" alt="Preuve 3" style="display:none;">
+                        </div>
+                        <div class="plainte-preuve">
+                            <input type="file" id="plainteProof4" accept="image/*" style="display:none;">
+                            <button type="button" class="plainte-proof-btn" data-proof="4">Télécharger une image</button>
+                            <img id="plainteProofImg4" alt="Preuve 4" style="display:none;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plainte-actions">
+                    <button class="plainte-save" type="button" id="plainteSaveBtn">Enregistrer Plainte</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="rechercheIndividusModal" style="display: none;">
+        <div class="modal-recherche">
+            <div class="recherche-header">
+                <h2 class="recherche-title">RECHERCHE DE PERSONNE</h2>
+                <button class="modal-close" onclick="closeRechercheIndividusModal()">×</button>
+            </div>
+            <div class="recherche-content">
+                <input type="text" id="rechercheInput" class="recherche-input" placeholder="Rechercher...">
+                <div class="recherche-results" id="rechercheResults"></div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="detailsIndividuModal" style="display: none;">
+        <div class="modal-details">
+            <div class="details-header">
+                <h2 class="details-title">RECHERCHE DE PERSONNE</h2>
+                <div class="details-header-right">
+                    <input type="text" id="detailsSearchInput" class="details-search-input" readonly>
+                    <button class="details-edit-btn" id="detailsEditBtn" onclick="ouvrirModificationRecensement()">Modifier</button>
+                    <button class="details-edit-btn" id="detailsDeleteBtn" onclick="supprimerRecensement()" style="background: rgba(220, 53, 69, 0.2); border-color: #dc3545; color: #dc3545;">Supprimer</button>
+                    <button class="details-close" onclick="closeDetailsIndividuModal()">×</button>
+                </div>
+            </div>
+            <div class="details-content">
+                <div class="details-left">
+                    
+                    <div class="details-section">
+                        <div class="details-section-header">
+                            <h3>TYPE DE LICENCES</h3>
+                        </div>
+                        <div class="details-licenses">
+                            <div class="details-license-type">
+                                <h4>Permis de conduire</h4>
+                                <div class="details-license-status" id="detailsLicenseStatus">
+                                    <div class="details-status-item">
+                                        <span class="details-status-letter">A</span>
+                                        <span class="details-status-value" id="statusA">N/A</span>
+                                    </div>
+                                    <div class="details-status-item">
+                                        <span class="details-status-letter">B</span>
+                                        <span class="details-status-value" id="statusB">N/A</span>
+                                    </div>
+                                    <div class="details-status-item">
+                                        <span class="details-status-letter">C</span>
+                                        <span class="details-status-value" id="statusC">N/A</span>
+                                    </div>
+                                </div>
+                                <div class="details-license-legend">
+                                    A = Permis Moto | B = Permis Voiture | C = Permis Camion
+                                </div>
+                            </div>
+                            <div class="details-license-type">
+                                <h4>Permis de port d'armes</h4>
+                                <div class="details-ppa-status" id="detailsPPAStatus">
+                                    <span class="details-ppa-value">Licence Invalide</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="details-section">
+                        <div class="details-section-header">
+                            <h3>RAPPORT D'ARRESTATION</h3>
+                            <span class="details-count" id="arrestCount">Nombre total de RA: 0</span>
+                            <button class="details-add-btn" id="arrestAddBtn">+</button>
+                        </div>
+                        <div class="details-arrest-list" id="arrestList">
+                            <div class="details-empty-large">N/A</div>
+                        </div>
+                    </div>
+                    <div class="details-section">
+                        <div class="details-section-header">
+                            <h3>ARME ÉMIS PAR LE GOUVERNEMENT</h3>
+                            <span class="details-count" id="weaponCount">Nombre total d'armes: 0</span>
+                            <button class="details-add-btn" id="weaponAddBtn" style="display: none;">+</button>
+                        </div>
+                        <div class="details-arrest-list" id="weaponList">
+                            <div class="details-empty-large">N/A</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="details-right">
+                    
+                    <div class="details-id-card" id="detailsIdCard">
+                        <div class="id-card-background">
+                            <img src="cni.avif" alt="CNI Background" class="cni-background">
+                        </div>
+                        <div class="id-card-content">
+                            <div class="id-card-photo">
+                                <img id="idCardPhoto" src="" alt="Photo" style="display: none;">
+                            </div>
+                            <div class="id-card-name" id="idCardName">-</div>
+                            <div class="id-card-dob" id="idCardDOB">-</div>
+                            <div class="id-card-address" id="idCardAddress">-</div>
+                            <div class="id-card-work" id="idCardWork">N/A</div>
+                            <div class="id-card-phone" id="idCardPhone">-</div>
+                            <div class="id-card-sex" id="idCardSex">-</div>
+                            <div class="id-card-hair" id="idCardHair">-</div>
+                            <div class="id-card-eyes" id="idCardEyes">-</div>
+                            <div class="id-card-hgt" id="idCardHgt">-</div>
+                            <div class="id-card-type" id="idCardType">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="details-section">
+                        <div class="details-section-header">
+                            <h3>CONTRAVENTION</h3>
+                            <span class="details-count" id="contraventionCount">Nombre total de Contravention: 0</span>
+                            <button class="details-add-btn" id="contraventionAddBtn">+</button>
+                        </div>
+                        <div class="details-contravention-content" id="contraventionContent">
+                            <div class="details-empty-large">N/A</div>
+                        </div>
+                    </div>
+                    
+                    <div class="details-section">
+                        <div class="details-section-header">
+                            <h3>DOSSIER PLAINTE</h3>
+                            <span class="details-count" id="plainteCount">Nombre total de Plainte : 0</span>
+                            <button class="details-add-btn" id="plainteAddBtn">+</button>
+                        </div>
+                        <div class="details-plainte-content" id="plainteContent">
+                            <div class="details-empty-large">N/A</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="calculateurPeineModal" style="display: none;">
+        <div class="modal-calculateur-peine">
+            <div class="calculateur-peine-header">
+                <div class="calculateur-peine-warning">
+                    Attention lors d'un <strong style="color: #dc3545;">CRIME</strong>, mettre "Non" dans la colonne "Avocat" Ils doivent négocier avec le procureur/juge. Tous les autres délits = mettre "Oui" si présence d'avocat
+                </div>
+                <div class="calculateur-peine-header-actions">
+                    <button class="calculateur-peine-clear" onclick="clearCalculateurPeine()">CLEAR</button>
+                    <button class="calculateur-peine-pdf" onclick="downloadCalculateurPeinePDF()">Télécharger PDF</button>
+                </div>
+                <button class="modal-close" onclick="closeCalculateurPeineModal()">×</button>
+            </div>
+            
+            <div class="calculateur-peine-form-top">
+                <div class="calculateur-peine-field">
+                    <label>Date</label>
+                    <input type="text" id="calculateurDate" value="23/12/2025">
+                </div>
+                <div class="calculateur-peine-field">
+                    <label>Agent(s)</label>
+                    <input type="text" id="calculateurAgent">
+                </div>
+                <div class="calculateur-peine-field">
+                    <label>Prévenu</label>
+                    <input type="text" id="calculateurPrevenu">
+                </div>
+                <div class="calculateur-peine-field">
+                    <label>Retenu</label>
+                    <select id="calculateurRetenu">
+                        <option value="">-</option>
+                        <option value="MIN 1">MIN 1</option>
+                        <option value="MIN 2">MIN 2</option>
+                        <option value="MIN 3">MIN 3</option>
+                        <option value="NOMINAL" selected>NOMINAL</option>
+                        <option value="MAX 1">MAX 1</option>
+                        <option value="MAX 2">MAX 2</option>
+                        <option value="MAX 3">MAX 3</option>
+                    </select>
+                </div>
+                <div class="calculateur-peine-field">
+                    <label>Amende</label>
+                    <input type="text" id="calculateurAmende" readonly>
+                </div>
+            </div>
+
+            <div class="calculateur-peine-table-container">
+                <table class="calculateur-peine-table">
+                    <thead>
+                        <tr>
+                            <th>Infraction</th>
+                            <th>Chefs d'accusation</th>
+                            <th>Qté</th>
+                            <th>Tentative</th>
+                            <th>Complicité</th>
+                            <th>Avocat</th>
+                            <th>Amendes</th>
+                            <th>Peines</th>
+                            <th>Spécial</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calculateurPeineTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="calculateur-peine-results">
+                <div class="calculateur-peine-title-section">
+                    <h2 class="calculateur-peine-title">Calculateur de peine</h2>
+                </div>
+                <div class="calculateur-peine-results-content">
+                    <div class="calculateur-peine-results-table-wrapper">
+                        <table class="calculateur-peine-results-table">
+                            <thead>
+                                <tr>
+                                    <th>Amendes</th>
+                                    <th>Peines</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="resultMin1Amende">$0</td>
+                                    <td id="resultMin1Peine">00:00</td>
+                                    <td>MIN 1</td>
+                                    <td><span class="calculateur-peine-code-inline code-green">Vice de procédure (CA) | EM / PROC / JUGE</span></td>
+                                </tr>
+                                <tr>
+                                    <td id="resultMin2Amende">$0</td>
+                                    <td id="resultMin2Peine">00:00</td>
+                                    <td>MIN 2</td>
+                                    <td><span class="calculateur-peine-code-inline code-green">Circonstances atténuantes | EM / PROC / JUGE</span></td>
+                                </tr>
+                                <tr>
+                                    <td id="resultMin3Amende">$0</td>
+                                    <td id="resultMin3Peine">00:00</td>
+                                    <td>MIN 3</td>
+                                    <td><span class="calculateur-peine-code-inline code-green">Circonstances atténuantes</span></td>
+                                </tr>
+                                <tr>
+                                    <td id="resultNominalAmende">$0</td>
+                                    <td id="resultNominalPeine">00:00</td>
+                                    <td>NOMINAL</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td id="resultMax1Amende">$0</td>
+                                    <td id="resultMax1Peine">00:00</td>
+                                    <td>MAX 1</td>
+                                    <td><span class="calculateur-peine-code-inline code-red">CODE ORANGE - EM / PROC / JUGE</span></td>
+                                </tr>
+                                <tr>
+                                    <td id="resultMax2Amende">$0</td>
+                                    <td id="resultMax2Peine">00:00</td>
+                                    <td>MAX 2</td>
+                                    <td><span class="calculateur-peine-code-inline code-red">CODE ROUGE - EM / PROC / JUGE</span></td>
+                                </tr>
+                                <tr>
+                                    <td id="resultMax3Amende">$0</td>
+                                    <td id="resultMax3Peine">00:00</td>
+                                    <td>MAX 3</td>
+                                    <td><span class="calculateur-peine-code-inline code-red">CODE NOIR</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="gestionCompteModal" style="display: none;">
+        <div class="modal-gestion-compte">
+            <button class="modal-close" onclick="closeGestionCompteModal()">×</button>
+            <h2 class="gestion-compte-title">GESTION COMMAND STAFF</h2>
+            <div class="gestion-compte-search">
+                <input type="text" id="gestionCompteSearchInput" class="gestion-compte-search-input" placeholder="Prénom & Nom" oninput="filterGestionCompteUsers()">
+                <select id="gestionCompteStatusFilter" class="gestion-compte-status-filter" onchange="filterGestionCompteUsers()">
+                    <option value="all">Tous les statuts</option>
+                    <option value="pending">⏳ En attente</option>
+                    <option value="approved">✅ Approuvé</option>
+                </select>
+            </div>
+            <div class="gestion-compte-users" id="gestionCompteUsersList">
+                <div class="gestion-compte-loading">Chargement...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="gestionMDTModal" style="display: none;">
+        <div class="modal-gestion-compte">
+            <button class="modal-close" onclick="closeGestionMDTModal()">×</button>
+            <h2 class="gestion-compte-title">GESTION MDT - TOUS DÉPARTEMENTS</h2>
+            <div class="gestion-compte-search">
+                <input type="text" id="gestionMDTSearchInput" class="gestion-compte-search-input" placeholder="Prénom & Nom" oninput="filterGestionMDTUsers()">
+                <select id="gestionMDTStatusFilter" class="gestion-compte-status-filter" onchange="filterGestionMDTUsers()">
+                    <option value="all">Tous les statuts</option>
+                    <option value="pending">⏳ En attente</option>
+                    <option value="approved">✅ Approuvé</option>
+                </select>
+            </div>
+            <div class="gestion-compte-users" id="gestionMDTUsersList">
+                <div class="gestion-compte-loading">Chargement...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="gestionInfractionsModal" style="display: none;">
+        <div class="modal-gestion-compte" style="max-width: 1200px;">
+            <button class="modal-close" onclick="closeGestionInfractionsModal()">×</button>
+            <h2 class="gestion-compte-title">GESTION DES INFRACTIONS</h2>
+            <div style="margin-bottom: 1rem; text-align: right;">
+                <button class="main-btn" onclick="openAddInfractionModal()" style="padding: 0.5rem 1rem;">Ajouter une infraction</button>
+            </div>
+            <div class="gestion-compte-search">
+                <input type="text" id="gestionInfractionsSearchInput" class="gestion-compte-search-input" placeholder="Rechercher une infraction..." oninput="filterInfractions()">
+                <select id="gestionInfractionsCategorieFilter" class="gestion-compte-status-filter" onchange="filterInfractions()">
+                    <option value="all">Toutes les catégories</option>
+                    <option value="Contravention">Contravention</option>
+                    <option value="Délit mineur">Délit mineur</option>
+                    <option value="Délit majeur">Délit majeur</option>
+                    <option value="Crime">Crime</option>
+                </select>
+            </div>
+            <div class="gestion-compte-users" id="gestionInfractionsList" style="max-height: 600px; overflow-y: auto;">
+                <div class="gestion-compte-loading">Chargement...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="addInfractionModal" style="display: none;">
+        <div class="modal-gestion-compte" style="max-width: 600px;">
+            <button class="modal-close" onclick="closeAddInfractionModal()">×</button>
+            <h2 class="gestion-compte-title" id="addInfractionModalTitle">AJOUTER UNE INFRACTION</h2>
+            <div style="padding: 1rem;">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Catégorie</label>
+                    <select id="infractionCategorieInput" class="gestion-compte-search-input" style="width: 100%; padding: 0.5rem;">
+                        <option value="Contravention">Contravention</option>
+                        <option value="Délit mineur">Délit mineur</option>
+                        <option value="Délit majeur">Délit majeur</option>
+                        <option value="Crime">Crime</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Description</label>
+                    <input type="text" id="infractionDescriptionInput" class="gestion-compte-search-input" style="width: 100%; padding: 0.5rem;" placeholder="Nom de l'infraction">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Amende ($)</label>
+                    <input type="number" id="infractionAmendeInput" class="gestion-compte-search-input" style="width: 100%; padding: 0.5rem;" placeholder="0" min="0">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Temps (HH:MM)</label>
+                    <input type="text" id="infractionTempsInput" class="gestion-compte-search-input" style="width: 100%; padding: 0.5rem;" placeholder="00:00">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Spécial (optionnel)</label>
+                    <input type="text" id="infractionSpecialInput" class="gestion-compte-search-input" style="width: 100%; padding: 0.5rem;" placeholder="Texte spécial">
+                </div>
+                <div style="text-align: right; margin-top: 1.5rem;">
+                    <button class="main-btn" onclick="saveInfraction()" style="padding: 0.5rem 1.5rem;">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="parametresModal" style="display: none;">
+        <div class="modal-parametres">
+            <div class="parametres-header">
+                <h2 class="parametres-title">Paramètres de mon compte</h2>
+                <button class="modal-close" onclick="closeParametresModal()">×</button>
+            </div>
+            <div class="parametres-content">
+                <div class="parametres-left">
+                    <div class="parametres-field">
+                        <label>Photo de profil</label>
+                        <div class="profile-photo-container" id="profilePhotoContainer">
+                            <input type="file" id="profilePhotoInput" accept="image/*" style="display: none;">
+                            <div class="profile-photo-placeholder" id="profilePhotoPlaceholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <img id="profilePhotoImg" style="display: none;" alt="Photo de profil">
+                        </div>
+                    </div>
+                    <div class="parametres-field">
+                        <label>Rang</label>
+                        <input type="text" id="rangInput" value="BCSO_EM" readonly>
+                    </div>
+                </div>
+                <div class="parametres-right">
+                    <div class="parametres-field">
+                        <label>Prénom & Nom</label>
+                        <input type="text" id="prenomNomInput" value="Raúl Pérez">
+                    </div>
+                    <div class="parametres-field">
+                        <label>Matricule</label>
+                        <input type="text" id="matriculeInput" value="313">
+                    </div>
+                    <div class="parametres-field">
+                        <label>Numéro de téléphone</label>
+                        <input type="text" id="telephoneInput" value="55598845">
+                    </div>
+                    <div class="parametres-field">
+                        <label>RIB</label>
+                        <input type="text" id="ribInput" value="125018">
+                    </div>
+                    <div class="parametres-field">
+                        <label>ID Discord</label>
+                        <input type="text" id="discordInput" value="1204506056252858459" readonly>
+                    </div>
+                    <div class="parametres-field">
+                        <label>Division</label>
+                        <input type="text" id="divisionInput" value="Division">
+                    </div>
+                </div>
+            </div>
+            <div class="parametres-footer">
+                <button class="submit-btn" onclick="saveParametres()">Enregistrer les modifications</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="rechercheSelectionModal" style="display: none;">
+        <div class="modal-recherche" style="max-width: 500px;">
+            <div class="recherche-header">
+                <h2 class="recherche-title">TYPE DE RECHERCHE</h2>
+                <button class="modal-close" onclick="closeRechercheSelectionModal()">×</button>
+            </div>
+            <div class="recherche-content" style="gap: 1.5rem;">
+                <button class="main-btn" onclick="openRechercheIndividus()" style="width: 100%; padding: 1.5rem; font-size: 1.1rem;">
+                    Recherche Individus
+                </button>
+                <button class="main-btn" onclick="openRechercheVehicules()" style="width: 100%; padding: 1.5rem; font-size: 1.1rem;">
+                    Recherche Véhicules
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="rechercheVehiculesModal" style="display: none;">
+        <div class="modal-recherche">
+            <div class="recherche-header">
+                <h2 class="recherche-title">RECHERCHE DE VÉHICULE</h2>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <button class="details-add-btn" id="recensementVehiculeBtn" onclick="openRecensementVehicule()" style="width: 40px; height: 40px; font-size: 1.5rem;">+</button>
+                    <button class="modal-close" onclick="closeRechercheVehiculesModal()">×</button>
+                </div>
+            </div>
+            <div class="recherche-content">
+                <input type="text" id="rechercheVehiculeInput" class="recherche-input" placeholder="Rechercher par plaque ou nom du propriétaire...">
+                <div class="recherche-results" id="rechercheVehiculeResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="recensementVehiculeModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-number">N°VEH</span>
+                <button class="modal-close" onclick="closeRecensementVehiculeModal()">×</button>
+            </div>
+            
+            <h2 class="modal-title">NOUVEAU RECENSEMENT DE VÉHICULE</h2>
+            
+            <div class="form-top-sections" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="form-section">
+                    <div class="section-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path>
+                            <polygon points="12 15 17 21 7 21 12 15"></polygon>
+                        </svg>
+                        <h3>INFORMATIONS VÉHICULE</h3>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <label>Plaque</label>
+                            <input type="text" id="vehiculePlaque" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Propriétaire</label>
+                            <input type="text" id="vehiculeProprietaire" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Marque / Model</label>
+                            <input type="text" id="vehiculeMarqueModel" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Voler ?</label>
+                            <div style="display: flex; gap: 1rem;">
+                                <button type="button" class="license-btn" id="vehiculeVoleOui" data-value="oui" style="flex: 1;">Oui</button>
+                                <button type="button" class="license-btn" id="vehiculeVoleNon" data-value="non" style="flex: 1;">Non</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        <h3>DÉTAILS</h3>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <label>Couleur</label>
+                            <input type="text" id="vehiculeCouleur" placeholder="">
+                        </div>
+                        <div class="form-field">
+                            <label>Seconde couleur</label>
+                            <input type="text" id="vehiculeSecondeCouleur" placeholder="">
+                        </div>
+                        <div class="form-field" style="grid-column: 1 / -1;">
+                            <label>Chef(s) d'inculpation</label>
+                            <div style="margin-bottom: 10px; position: relative;">
+                                <input type="text" id="vehiculeChargeSearch" placeholder="Rechercher un chef d'inculpation..." autocomplete="off" style="width: 100%; background: rgba(10, 22, 40, 0.8); border: 1px solid #b8860b; border-radius: 4px; padding: 0.5rem; color: #ffffff; font-size: 0.85rem;">
+                                <div id="vehiculeChargeSearchResults" style="position: absolute; top: 100%; left: 0; right: 0; background: #1a2332; border: 2px solid #b8860b; border-top: none; max-height: 300px; overflow-y: auto; z-index: 1000; display: none; margin-top: 2px;"></div>
+                            </div>
+                            <div id="vehiculeChargesContainer" style="min-height: 120px; border: 2px solid #b8860b; background: rgba(10, 22, 40, 0.4); padding: 1rem; border-radius: 4px; margin-top: 0.5rem;">
+                                <div style="text-align: center; color: rgba(255, 255, 255, 0.6); padding: 1.5rem;">
+                                    Aucune charge. Recherchez un chef d'inculpation ci-dessus pour l'ajouter.
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.7);" id="vehiculeChargesCount">0 charge(s)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="submit-btn" onclick="encoderRecensementVehicule()">Encoder le recensement</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="detailsVehiculeModal" style="display: none;">
+        <div class="modal-details">
+            <div class="details-header">
+                <h2 class="details-title">RECHERCHE DE VÉHICULE</h2>
+                <div class="details-header-right">
+                    <input type="text" id="detailsVehiculeSearchInput" class="details-search-input" readonly>
+                    <button class="details-edit-btn" id="detailsVehiculeEditBtn" onclick="ouvrirModificationVehicule()">Modifier</button>
+                    <button class="details-edit-btn" id="detailsVehiculeDeleteBtn" onclick="supprimerVehicule()" style="background: rgba(220, 53, 69, 0.2); border-color: #dc3545; color: #dc3545;">Supprimer</button>
+                    <button class="details-close" onclick="closeDetailsVehiculeModal()">×</button>
+                </div>
+            </div>
+            <div class="details-content">
+                <div class="details-left" style="grid-column: 1 / -1;">
+                    <div class="details-section">
+                        <div class="details-section-header">
+                            <h3>INFORMATIONS VÉHICULE</h3>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 1rem;">
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div style="color: #b8860b; font-weight: 600; font-size: 0.9rem;">Plaque</div>
+                                <div style="color: #ffffff; font-size: 1.1rem; font-weight: 500;" id="detailsVehiculePlaque">-</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div style="color: #b8860b; font-weight: 600; font-size: 0.9rem;">Propriétaire</div>
+                                <div style="color: #ffffff; font-size: 1.1rem; font-weight: 500;" id="detailsVehiculeProprietaire">-</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div style="color: #b8860b; font-weight: 600; font-size: 0.9rem;">Marque / Model</div>
+                                <div style="color: #ffffff; font-size: 1.1rem; font-weight: 500;" id="detailsVehiculeMarqueModel">-</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div style="color: #b8860b; font-weight: 600; font-size: 0.9rem;">Statut</div>
+                                <div style="color: #ffffff; font-size: 1.1rem; font-weight: 500;" id="detailsVehiculeVole">-</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div style="color: #b8860b; font-weight: 600; font-size: 0.9rem;">Couleur</div>
+                                <div style="color: #ffffff; font-size: 1.1rem; font-weight: 500;" id="detailsVehiculeCouleur">-</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div style="color: #b8860b; font-weight: 600; font-size: 0.9rem;">Seconde couleur</div>
+                                <div style="color: #ffffff; font-size: 1.1rem; font-weight: 500;" id="detailsVehiculeSecondeCouleur">-</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; grid-column: 1 / -1;">
+                                <div style="color: #b8860b; font-weight: 600; font-size: 0.9rem;">Chef d'inculpation</div>
+                                <div style="color: #ffffff; font-size: 1rem; line-height: 1.6; padding: 0.75rem; background: rgba(10, 22, 40, 0.6); border: 1px solid rgba(184, 134, 11, 0.3); border-radius: 4px; min-height: 60px;" id="detailsVehiculeChefInculpation">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport - MDT</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        .report-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 60px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+        }
+        .report-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .report-logo img {
+            height: 70px;
+            width: auto;
+        }
+        .report-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            color: #000;
+        }
+        .report-subtitle {
+            font-size: 12px;
+            color: #000;
+            margin-top: 5px;
+        }
+        .report-meta {
+            text-align: right;
+        }
+        .report-number {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000;
+        }
+        .report-confidential {
+            font-size: 10px;
+            color: #000;
+            margin-top: 5px;
+        }
+        .report-date {
+            margin: 20px 0;
+            font-size: 14px;
+            color: #000;
+        }
+        .report-section {
+            margin: 30px 0;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            margin-top: 25px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            color: #000;
+        }
+        .redacteur-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 24px;
+            color: #000;
+        }
+        .info-item svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            color: #000;
+        }
+        .info-item span {
+            color: #000;
+            font-size: 14px;
+        }
+        .suspect-section {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .suspect-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .suspect-table th,
+        .suspect-table td {
+            padding: 10px 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            color: #000;
+            font-size: 14px;
+        }
+        .suspect-table th {
+            background: #f5f5f5;
+            font-weight: bold;
+            font-size: 12px;
+            color: #000;
+        }
+        .suspect-table td {
+            min-height: 24px;
+        }
+        .suspect-table th svg {
+            vertical-align: middle;
+            color: #000;
+        }
+        .suspect-photo {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+        .charges-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .charges-table th,
+        .charges-table td {
+            padding: 8px 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 13px;
+            color: #000;
+        }
+        .charges-table th {
+            background: #f5f5f5;
+            font-weight: bold;
+            font-size: 12px;
+            color: #000;
+        }
+        .charge-row-minor {
+            background: #FFF9C4;
+        }
+        .charge-row-major {
+            background: #FFE0B2;
+        }
+        .charge-row-felony {
+            background: #FFCDD2;
+        }
+        .total-section {
+            margin: 20px 0;
+        }
+        .total-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .total-table th,
+        .total-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+            color: #000;
+        }
+        .total-table th {
+            background: #f5f5f5;
+            font-weight: bold;
+            color: #000;
+        }
+        .total-value {
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+            padding: 12px 10px;
+        }
+        .report-body {
+            margin: 30px 0;
+            line-height: 1.8;
+            font-size: 14px;
+            color: #000;
+            padding: 20px;
+            background: #fafafa;
+            border-left: 3px solid #ddd;
+            min-height: 100px;
+        }
+        .report-body strong {
+            font-weight: bold;
+            color: #000;
+        }
+        .report-body:empty::before {
+            content: 'Aucun contenu';
+            color: #000;
+            font-style: italic;
+        }
+        .incident-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .detail-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #000;
+            min-width: 180px;
+        }
+        .detail-value {
+            color: #000;
+            flex: 1;
+        }
+        .signature-section {
+            margin-top: 50px;
+            text-align: right;
+        }
+        .signature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 24px;
+            color: #000;
+        }
+        .back-button {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .back-button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <button class="back-button" onclick="window.history.back()">← Retour</button>
+        
+        <div class="report-header">
+            <div class="report-logo">
+                <img id="departmentLogo" src="logo.webp" alt="Logo">
+                <div>
+                    <h1 class="report-title" id="reportTitle">Rapport d'Arrestation :</h1>
+                    <p class="report-subtitle" id="reportSubtitle">Document émis par le Command Staff de la police de Los Santos</p>
+                </div>
+            </div>
+            <div class="report-meta">
+                <div class="report-number">Dossier N°<span id="reportNumber">-</span></div>
+                <div class="report-confidential">Ce document est confidentiel. Toute diffusion non autorisée est passible de sanctions pénales.</div>
+            </div>
+        </div>
+
+        <div class="report-date" id="reportDate">Rédigée à <span id="reportLocation">Sandy Shore, San Andreas</span> le <span id="reportDateValue">-</span> à <span id="reportTimeValue">-</span></div>
+
+        <div class="report-section">
+            <div class="section-title">Rédacteur</div>
+            <div class="redacteur-info">
+                <div class="info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span id="redacteurName">-</span> - Matricule <span id="redacteurMatricule">-</span>
+                </div>
+                <div class="info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span id="redacteurPhone">-</span>
+                </div>
+                <div class="info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span id="redacteurEmail">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-section" id="suspectSection">
+            <div class="section-title">Suspect</div>
+            <div class="suspect-section">
+                <table class="suspect-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                </svg>
+                            </th>
+                            <th>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </th>
+                            <th>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </th>
+                            <th>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="suspectName">-</td>
+                            <td id="suspectJob">-</td>
+                            <td id="suspectDob">-</td>
+                            <td id="suspectPhone">-</td>
+                            <td id="suspectAddress">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <img id="suspectPhoto" class="suspect-photo" src="" alt="Photo suspect" style="display: none;">
+            </div>
+        </div>
+
+        <div class="report-section" id="chargesSection" style="display: none;">
+            <div class="section-title">Chefs d'accusation | <span id="chargesCount">0</span></div>
+            <table class="charges-table" id="chargesTable">
+                <thead>
+                    <tr>
+                        <th>Catégorie</th>
+                        <th>Nom</th>
+                        <th>Quantité</th>
+                        <th>Amende</th>
+                        <th>UP</th>
+                        <th>Tentative</th>
+                        <th>Complicité</th>
+                    </tr>
+                </thead>
+                <tbody id="chargesBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="report-section" id="totalSection" style="display: none;">
+            <div class="section-title">Total</div>
+            <table class="total-table">
+                <thead>
+                    <tr>
+                        <th>Amende | Payée</th>
+                        <th>UP | Purgée</th>
+                        <th>Type Amende</th>
+                        <th>Type UP</th>
+                        <th>Avocat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="total-value" id="totalAmende">-</td>
+                        <td class="total-value" id="totalUP">-</td>
+                        <td id="amendeType">-</td>
+                        <td id="upType">-</td>
+                        <td id="avocat">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="report-section" id="incidentDetailsSection" style="display: none;">
+            <div class="section-title">Détails de l'incident</div>
+            <div class="incident-details">
+                <div class="detail-row">
+                    <span class="detail-label">Titre :</span>
+                    <span class="detail-value" id="incidentTitre">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Type :</span>
+                    <span class="detail-value" id="incidentType">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date de l'incident :</span>
+                    <span class="detail-value" id="incidentDate">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Heure de l'incident :</span>
+                    <span class="detail-value" id="incidentHeure">-</span>
+                </div>
+                <div class="detail-row" id="leadTerrainRow" style="display: none;">
+                    <span class="detail-label">Lead Terrain :</span>
+                    <span class="detail-value" id="leadTerrain">-</span>
+                </div>
+                <div class="detail-row" id="leadNegotiationRow" style="display: none;">
+                    <span class="detail-label">Lead Négociation :</span>
+                    <span class="detail-value" id="leadNegotiation">-</span>
+                </div>
+                <div class="detail-row" id="revendicationRow" style="display: none;">
+                    <span class="detail-label">Revendication :</span>
+                    <span class="detail-value" id="revendication">-</span>
+                </div>
+                <div class="detail-row" id="nbRavisseursRow" style="display: none;">
+                    <span class="detail-label">Nombre de ravisseurs :</span>
+                    <span class="detail-value" id="nbRavisseurs">-</span>
+                </div>
+                <div class="detail-row" id="nbInterpelRow" style="display: none;">
+                    <span class="detail-label">Nombre d'interpellés :</span>
+                    <span class="detail-value" id="nbInterpel">-</span>
+                </div>
+                <div class="detail-row" id="nbOtagesRow" style="display: none;">
+                    <span class="detail-label">Nombre d'otages :</span>
+                    <span class="detail-value" id="nbOtages">-</span>
+                </div>
+                <div class="detail-row" id="officiersImpliquesRow" style="display: none;">
+                    <span class="detail-label">Officiers impliqués :</span>
+                    <span class="detail-value" id="officiersImpliques">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <div class="section-title">Corps du rapport</div>
+            <div class="report-body" id="reportBody">-</div>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-title">Signature de l'officier</div>
+            <div class="signature" id="signature">-</div>
+        </div>
+    </div>
+
+    <script>
+        async function loadReport() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const type = urlParams.get('type');
+            const id = urlParams.get('id');
+            const recensementId = urlParams.get('recensementId');
+
+            if (!type || !id) {
+                alert('Paramètres manquants');
+                window.history.back();
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/reports/${type}?id=${id}&recensementId=${recensementId || ''}`, {
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erreur lors du chargement du rapport');
+                }
+
+                const data = await response.json();
+                displayReport(data, type);
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Erreur lors du chargement du rapport');
+                window.history.back();
+            }
+        }
+
+        function displayReport(data, type) {
+            let department = 'BCSO';
+            
+            if (data.redacteur) {
+                if (data.redacteur.department) {
+                    department = data.redacteur.department;
+                } else if (data.redacteur.email) {
+                    if (data.redacteur.email.includes('@gouv.us')) {
+                        department = 'GOUV';
+                    } else if (data.redacteur.email.includes('@lspd.us')) {
+                        department = 'LSPD';
+                    } else if (data.redacteur.email.includes('@bcso.us')) {
+                        department = 'BCSO';
+                    }
+                } else if (data.redacteur.mail) {
+                    if (data.redacteur.mail.includes('@gouv.us')) {
+                        department = 'GOUV';
+                    } else if (data.redacteur.mail.includes('@lspd.us')) {
+                        department = 'LSPD';
+                    } else if (data.redacteur.mail.includes('@bcso.us')) {
+                        department = 'BCSO';
+                    }
+                }
+            }
+            
+            if (department === 'BCSO' && data.department) {
+                department = data.department;
+            }
+            
+            const logo = document.getElementById('departmentLogo');
+            const title = document.getElementById('reportTitle');
+            const subtitle = document.getElementById('reportSubtitle');
+
+            if (department === 'LSPD') {
+                if (logo) logo.src = 'lspd.png';
+                if (subtitle) subtitle.textContent = 'Document émis par le Command Staff de la police de Los Santos';
+            } else if (department === 'GOUV') {
+                if (logo) logo.src = 'gouv.webp';
+                if (subtitle) subtitle.textContent = 'Document émis par le Gouvernement of Los Santos';
+            } else {
+                if (logo) logo.src = 'logo.webp';
+                if (subtitle) subtitle.textContent = 'Document émis par le Command Staff du Blaine County Sheriff Office';
+            }
+
+            if (type === 'arrestation') {
+                if (title) title.textContent = 'Rapport d\'Arrestation :';
+                displayArrestReport(data, department);
+            } else if (type === 'incident') {
+                if (title) title.textContent = 'Rapport d\'Incident :';
+                displayIncidentReport(data, department);
+            } else if (type === 'firstLincoln') {
+                if (title) title.textContent = 'LSPD x BCSO FIRST LINCOLN';
+                displayFirstLincolnReport(data, department);
+            } else if (type === 'rookie') {
+                if (title) title.textContent = 'Rapport de Procédure :';
+                displayRookieReport(data, department);
+            }
+        }
+
+        function displayArrestReport(data, department = 'BCSO') {
+            document.getElementById('reportNumber').textContent = data.numero || 'N/A';
+            
+            const date = data.date || '';
+            const time = data.heure || '';
+            document.getElementById('reportDateValue').textContent = date;
+            document.getElementById('reportTimeValue').textContent = time;
+            
+            let location = data.location;
+            if (!location) {
+                if (department === 'LSPD' || department === 'GOUV') {
+                    location = 'Los Santos, San Andreas';
+                } else {
+                    location = 'Sandy Shore, San Andreas';
+                }
+            }
+            document.getElementById('reportLocation').textContent = location;
+
+            if (data.redacteur) {
+                document.getElementById('redacteurName').textContent = data.redacteur.fullName || 'N/A';
+                document.getElementById('redacteurMatricule').textContent = data.redacteur.matricule || 'N/A';
+                const phone = data.redacteur.telephone || '';
+                document.getElementById('redacteurPhone').textContent = phone || 'N/A';
+                const email = data.redacteur.email || '';
+                document.getElementById('redacteurEmail').textContent = email || 'N/A';
+                document.getElementById('signature').textContent = data.redacteur.fullName || 'N/A';
+            }
+
+            if (data.suspect) {
+                const suspectName = data.suspect.nom || data.suspect.prenomNom || '';
+                document.getElementById('suspectName').textContent = suspectName || 'N/A';
+                document.getElementById('suspectJob').textContent = data.suspect.profession || 'Chômage';
+                const dob = formatDate(data.suspect.dob || data.suspect.dateNaissance);
+                document.getElementById('suspectDob').textContent = dob || 'N/A';
+                const suspectPhone = data.suspect.telephone || '';
+                document.getElementById('suspectPhone').textContent = suspectPhone || 'N/A';
+                const suspectAddress = data.suspect.adresse || '';
+                document.getElementById('suspectAddress').textContent = suspectAddress || 'N/A';
+                
+                if (data.suspect.photo) {
+                    const photo = document.getElementById('suspectPhoto');
+                    photo.src = data.suspect.photo;
+                    photo.style.display = 'block';
+                }
+            }
+
+            let charges = [];
+            if (data.charges && Array.isArray(data.charges) && data.charges.length > 0) {
+                charges = data.charges;
+            } else if (data.chargesDetail) {
+                try {
+                    const parsed = JSON.parse(data.chargesDetail);
+                    if (Array.isArray(parsed)) {
+                        charges = parsed;
+                    }
+                } catch (e) {
+                    console.log('chargesDetail n\'est pas un JSON valide, ignoré');
+                }
+            }
+
+            if (charges.length > 0) {
+                document.getElementById('chargesSection').style.display = 'block';
+                document.getElementById('chargesCount').textContent = charges.length;
+                const tbody = document.getElementById('chargesBody');
+                tbody.innerHTML = '';
+                charges.forEach(charge => {
+                    const row = document.createElement('tr');
+                    const categorie = (charge.categorie || charge.category || '').toLowerCase();
+                    if (categorie.includes('mineur')) {
+                        row.className = 'charge-row-minor';
+                    } else if (categorie.includes('majeur')) {
+                        row.className = 'charge-row-major';
+                    } else if (categorie.includes('crime') || categorie.includes('felony')) {
+                        row.className = 'charge-row-felony';
+                    }
+                    const amende = charge.amende || charge.fine || '0';
+                    const up = charge.up || charge.prison || '0';
+                    const upText = up.includes('minute') ? up : `${up} minute(s)`;
+                    row.innerHTML = `
+                        <td>${charge.categorie || charge.category || '-'}</td>
+                        <td>${charge.nom || charge.name || '-'}</td>
+                        <td>${charge.quantite || charge.quantity || '1'}</td>
+                        <td>${amende} $</td>
+                        <td>${upText}</td>
+                        <td>${charge.tentative || charge.attempt || 'NON'}</td>
+                        <td>${charge.complicite || charge.complicity || 'NON'}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+
+            if (data.amende || data.temps || charges.length > 0) {
+                document.getElementById('totalSection').style.display = 'block';
+                
+                let totalAmende = 0;
+                let totalUP = 0;
+                
+                if (charges.length > 0) {
+                    charges.forEach(charge => {
+                        const amende = parseInt(charge.amende || charge.fine || 0);
+                        const up = parseInt(charge.up || charge.prison || 0);
+                        totalAmende += amende;
+                        totalUP += up;
+                    });
+                }
+                
+                if (data.amende) {
+                    totalAmende = parseInt(data.amende) || totalAmende;
+                }
+                if (data.temps) {
+                    const tempsMatch = (data.temps || '').match(/(\d+)/);
+                    if (tempsMatch) {
+                        totalUP = parseInt(tempsMatch[1]) || totalUP;
+                    }
+                }
+                
+                document.getElementById('totalAmende').textContent = `${totalAmende} $`;
+                document.getElementById('totalUP').textContent = `${totalUP} minute(s)`;
+                document.getElementById('amendeType').textContent = data.amendeType || 'NOMINAL';
+                document.getElementById('upType').textContent = data.tempsType || 'NOMINAL';
+                document.getElementById('avocat').textContent = data.avocat || 'NON';
+            }
+
+            let reportBody = '';
+            if (data.corps) {
+                reportBody = data.corps;
+            } else if (data.chefAccusation) {
+                reportBody = data.chefAccusation;
+            } else if (data.chargesDetail) {
+                try {
+                    const parsed = JSON.parse(data.chargesDetail);
+                    if (!Array.isArray(parsed)) {
+                        reportBody = data.chargesDetail;
+                    }
+                } catch (e) {
+                    reportBody = data.chargesDetail;
+                }
+            }
+
+            if (!reportBody && data.date && data.heure && data.suspect) {
+                const suspectName = data.suspect.nom || data.suspect.prenomNom || 'l\'individu(e)';
+                const redacteurName = data.redacteur ? data.redacteur.fullName : 'l\'officier';
+                const redacteurMatricule = data.redacteur ? data.redacteur.matricule : '';
+                const date = data.date;
+                const heure = data.heure;
+                const heureArrivee = heure;
+                const heureMiranda = heure;
+                const avocatText = data.avocat === 'OUI' ? 'souhaitait' : 'ne souhaitait pas';
+                const department = data.department || 'LSPD';
+                const deptName = department === 'LSPD' ? 'LSPD' : department === 'GOUV' ? 'GOUV' : 'BCSO';
+                
+                reportBody = `Le ${date} à ${heure} à Los Santos,\nLa patrouille composée de **${redacteurName}** a été appelée pour un(e) **tir d'armes à feu**. L'individu(e) **${suspectName}** a ainsi été arrêté(e) et emmené(e) au poste de police de **Mission Row**.\n\nUne fois arrivé au poste de police, la lecture des droits Miranda a été faite à **${heureMiranda}**.\n\n${suspectName} a confirmé avoir bien compris ses droits. Une fouille a été effectuée, l'individu(e) s'est fait saisir: [Objet saisi]. L'individu(e) s'est montré(e) **coopératif** pendant toute la durée de la procédure.\n\n${suspectName} a été informé(e) de son droit à un avocat et a déclaré qu'il/elle ${avocatText} en avoir.\n\nLe rapport d'arrestation a été rédigé dans les délais, en conformité avec les procédures internes du **${deptName}**. Toutes les données ont été transmises au service des affaires judiciaires pour traitement complémentaire.`;
+            }
+
+            const reportBodyEl = document.getElementById('reportBody');
+            if (reportBody) {
+                if (reportBody.includes('**')) {
+                    reportBodyEl.innerHTML = reportBody.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                } else {
+                    reportBodyEl.innerHTML = reportBody.replace(/\n/g, '<br>');
+                }
+            } else {
+                reportBodyEl.textContent = '-';
+            }
+        }
+
+        function displayIncidentReport(data, department = 'BCSO') {
+            document.getElementById('reportNumber').textContent = data.numero || 'N/A';
+            
+            const date = data.date || data.dateRedaction || data.dateIncident || '';
+            const time = data.heure || data.heureRedaction || data.heureIncident || '';
+            document.getElementById('reportDateValue').textContent = date || 'N/A';
+            document.getElementById('reportTimeValue').textContent = time || 'N/A';
+            
+            let location = data.location;
+            if (!location) {
+                if (department === 'LSPD' || department === 'GOUV') {
+                    location = 'Los Santos, San Andreas';
+                } else {
+                    location = 'Sandy Shore, San Andreas';
+                }
+            }
+            document.getElementById('reportLocation').textContent = location;
+
+            if (data.redacteur) {
+                document.getElementById('redacteurName').textContent = data.redacteur.fullName || data.redacteur.nom || 'N/A';
+                document.getElementById('redacteurMatricule').textContent = data.redacteur.matricule || 'N/A';
+                document.getElementById('redacteurPhone').textContent = data.redacteur.telephone || data.redacteur.telephoneRedacteur || 'N/A';
+                document.getElementById('redacteurEmail').textContent = data.redacteur.email || 'N/A';
+                document.getElementById('signature').textContent = data.redacteur.fullName || data.redacteur.nom || data.redacteur.signature || 'N/A';
+            }
+
+            document.getElementById('chargesSection').style.display = 'none';
+            document.getElementById('totalSection').style.display = 'none';
+            document.getElementById('suspectSection').style.display = 'none';
+
+            document.getElementById('incidentDetailsSection').style.display = 'block';
+            document.getElementById('incidentTitre').textContent = data.titre || 'N/A';
+            document.getElementById('incidentType').textContent = data.type || 'N/A';
+            document.getElementById('incidentDate').textContent = data.dateIncident || 'N/A';
+            document.getElementById('incidentHeure').textContent = data.heureIncident || 'N/A';
+
+            if (data.leadTerrain) {
+                document.getElementById('leadTerrainRow').style.display = 'flex';
+                document.getElementById('leadTerrain').textContent = data.leadTerrain;
+            } else {
+                document.getElementById('leadTerrainRow').style.display = 'none';
+            }
+
+            if (data.leadNegotiation) {
+                document.getElementById('leadNegotiationRow').style.display = 'flex';
+                document.getElementById('leadNegotiation').textContent = data.leadNegotiation;
+            } else {
+                document.getElementById('leadNegotiationRow').style.display = 'none';
+            }
+
+            if (data.revendication) {
+                document.getElementById('revendicationRow').style.display = 'flex';
+                document.getElementById('revendication').textContent = data.revendication;
+            } else {
+                document.getElementById('revendicationRow').style.display = 'none';
+            }
+
+            if (data.nbRavisseurs) {
+                document.getElementById('nbRavisseursRow').style.display = 'flex';
+                document.getElementById('nbRavisseurs').textContent = data.nbRavisseurs;
+            } else {
+                document.getElementById('nbRavisseursRow').style.display = 'none';
+            }
+
+            if (data.nbInterpel) {
+                document.getElementById('nbInterpelRow').style.display = 'flex';
+                document.getElementById('nbInterpel').textContent = data.nbInterpel;
+            } else {
+                document.getElementById('nbInterpelRow').style.display = 'none';
+            }
+
+            if (data.nbOtages) {
+                document.getElementById('nbOtagesRow').style.display = 'flex';
+                document.getElementById('nbOtages').textContent = data.nbOtages;
+            } else {
+                document.getElementById('nbOtagesRow').style.display = 'none';
+            }
+
+            if (data.officiersImpliques) {
+                document.getElementById('officiersImpliquesRow').style.display = 'flex';
+                document.getElementById('officiersImpliques').textContent = data.officiersImpliques;
+            } else {
+                document.getElementById('officiersImpliquesRow').style.display = 'none';
+            }
+
+            if (data.description || data.corps) {
+                const bodyText = data.description || data.corps;
+                const reportBodyEl = document.getElementById('reportBody');
+                if (bodyText && bodyText.trim() !== '') {
+                    if (bodyText.includes('**')) {
+                        reportBodyEl.innerHTML = bodyText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                    } else {
+                        reportBodyEl.innerHTML = bodyText.replace(/\n/g, '<br>');
+                    }
+                } else {
+                    reportBodyEl.textContent = 'N/A';
+                }
+            } else {
+                document.getElementById('reportBody').textContent = 'N/A';
+            }
+        }
+
+        function displayFirstLincolnReport(data, department = 'BCSO') {
+            document.getElementById('reportNumber').textContent = data.numero || 'N/A';
+            
+            const date = data.dateRedaction || data.date || '';
+            const time = data.heureRedaction || data.heure || '';
+            document.getElementById('reportDateValue').textContent = date || 'N/A';
+            document.getElementById('reportTimeValue').textContent = time || 'N/A';
+            
+            let location = 'Los Santos, San Andreas';
+            if (department === 'BCSO') {
+                location = 'Sandy Shore, San Andreas';
+            }
+            document.getElementById('reportLocation').textContent = location;
+
+            if (data.redacteur) {
+                document.getElementById('redacteurName').textContent = data.redacteur.fullName || 'N/A';
+                document.getElementById('redacteurMatricule').textContent = data.redacteur.matricule || 'N/A';
+                document.getElementById('redacteurPhone').textContent = data.redacteur.telephone || 'N/A';
+                document.getElementById('redacteurEmail').textContent = data.redacteur.email || 'N/A';
+                document.getElementById('signature').textContent = data.signature || data.redacteur.fullName || 'N/A';
+            }
+
+            document.getElementById('chargesSection').style.display = 'none';
+            document.getElementById('totalSection').style.display = 'none';
+            document.getElementById('suspectSection').style.display = 'none';
+            document.getElementById('incidentDetailsSection').style.display = 'none';
+
+            if (data.commentaire) {
+                const reportBodyEl = document.getElementById('reportBody');
+                if (data.commentaire.includes('**')) {
+                    reportBodyEl.innerHTML = data.commentaire.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                } else {
+                    reportBodyEl.innerHTML = data.commentaire.replace(/\n/g, '<br>');
+                }
+            } else {
+                document.getElementById('reportBody').textContent = 'N/A';
+            }
+        }
+
+        function displayRookieReport(data, department = 'BCSO') {
+            document.getElementById('reportNumber').textContent = data.numero || 'N/A';
+            
+            const date = data.dateRedaction || data.date || '';
+            const time = data.heureRedaction || data.heure || '';
+            document.getElementById('reportDateValue').textContent = date || 'N/A';
+            document.getElementById('reportTimeValue').textContent = time || 'N/A';
+            
+            let location = 'Los Santos, San Andreas';
+            if (department === 'BCSO') {
+                location = 'Sandy Shore, San Andreas';
+            }
+            document.getElementById('reportLocation').textContent = location;
+
+            if (data.redacteur) {
+                document.getElementById('redacteurName').textContent = data.redacteur.fullName || 'N/A';
+                document.getElementById('redacteurMatricule').textContent = data.redacteur.matricule || 'N/A';
+                document.getElementById('redacteurPhone').textContent = data.redacteur.telephone || 'N/A';
+                document.getElementById('redacteurEmail').textContent = data.redacteur.email || 'N/A';
+                document.getElementById('signature').textContent = data.signature || data.redacteur.fullName || 'N/A';
+            }
+
+            document.getElementById('chargesSection').style.display = 'none';
+            document.getElementById('totalSection').style.display = 'none';
+            document.getElementById('suspectSection').style.display = 'none';
+            document.getElementById('incidentDetailsSection').style.display = 'none';
+
+            if (data.corps || data.commentaire) {
+                const bodyText = data.corps || data.commentaire;
+                const reportBodyEl = document.getElementById('reportBody');
+                if (bodyText && bodyText.trim() !== '') {
+                    if (bodyText.includes('**')) {
+                        reportBodyEl.innerHTML = bodyText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                    } else {
+                        reportBodyEl.innerHTML = bodyText.replace(/\n/g, '<br>');
+                    }
+                } else {
+                    reportBodyEl.textContent = 'N/A';
+                }
+            } else {
+                document.getElementById('reportBody').textContent = 'N/A';
+            }
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return dateString;
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+
+        window.addEventListener('DOMContentLoaded', loadReport);
+    </script>
+</body>
+</html>
