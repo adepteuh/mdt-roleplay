@@ -3,13 +3,13 @@ const mysql = require('mysql2/promise');
 const https = require('https');
 const http = require('http');
 
-const DEV_MDT_IDS = ['1204506056252858459', '468745336945508373', '520322954899226670', '405817986495283220'];
+const DEV_MDT_IDS = ['ID1', 'ID2', 'ID3', 'ID4'];
 
 function isDevMDT(discordId) {
     return DEV_MDT_IDS.includes(discordId);
 }
 
-const BOT_TOKEN = 'SALOPE DE ADEPT';
+const BOT_TOKEN = 'token bot';
 
 const dbConfig = {
     host: 'localhost',
