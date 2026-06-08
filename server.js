@@ -13,8 +13,8 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const app = express();
 const PORT = 3000;
 
-const DISCORD_BOT_TOKEN = 'SALOPE DE ADEPT';
-const DISCORD_IMAGE_CHANNEL_ID = '1110219900003307550';
+const DISCORD_BOT_TOKEN = 'token bot';
+const DISCORD_IMAGE_CHANNEL_ID = 'channel ID';
 const discordClient = new Client({
     intents: [
         GatewayIntentBits.Guilds,
